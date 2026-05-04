@@ -6,7 +6,2139 @@
 <meta name="theme-color" content="#07090D">
 <title>Summer Strong · Amersham &amp; Chiltern U13</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https:<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#07090D">
+<title>Summer Strong · Amersham &amp; Chiltern U13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<style>
+  :root {
+    --burgundy:#8D2145; --burgundy-dk:#5A1530; --burgundy-lt:#B23461;
+    --gold:#F2A900; --gold-dk:#C68A00;
+    --black:#07090D; --bg-2:#13161B; --bg-3:#1E2229; --bg-4:#2A2F38;
+    --text:#F4F1EA; --muted:#9aa0a6; --line:#2C3038;
+    --green:#3FAE5F; --red:#D44A3F;
+  }
+  *,*::before,*::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0; padding: 0; background: var(--black); color: var(--text);
+    font-family: 'Barlow', system-ui, sans-serif; min-height: 100vh;
+    overscroll-behavior: contain; -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(141,33,69,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 50% at 50% 100%, rgba(242,169,0,0.06) 0%, transparent 60%),
+      var(--black);
+    background-attachment: fixed;
+  }
+  #root { max-width: 430px; margin: 0 auto; min-height: 100vh; position: relative; padding: 16px 16px 60px; }
+  h1, h2, h3, h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; margin: 0; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.05; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 18px; }
+  h4 { font-size: 15px; color: var(--gold); }
+  p { margin: 0 0 8px; line-height: 1.45; }
+  a { color: var(--gold); }
+
+  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; line-height: 1; }
+  .label { font-family: 'Rajdhani', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; color: var(--muted); }
+
+  .card { background: linear-gradient(180deg, var(--bg-2), var(--bg-3)); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .card-burgundy { background: linear-gradient(180deg, var(--burgundy), var(--burgundy-dk)); border: 1px solid var(--gold); border-radius: 14px; padding: 14px; }
+
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:none; cursor:pointer; padding:14px 18px; font-family:'Rajdhani',sans-serif; font-size:16px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border-radius:10px; transition:transform .08s ease, filter .12s ease; user-select:none; width:100%; }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--gold); color: var(--black); box-shadow: 0 4px 0 var(--gold-dk); }
+  .btn-primary:active { box-shadow: 0 2px 0 var(--gold-dk); transform: translateY(2px); }
+  .btn-secondary { background: var(--burgundy); color: var(--text); border: 1px solid var(--gold); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .btn-danger { background: transparent; color: var(--red); border: 1px solid var(--red); }
+  .btn-sm { padding: 8px 12px; font-size: 13px; width: auto; }
+  .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+  .row { display: flex; gap: 10px; align-items: center; }
+  .row-between { display: flex; gap: 10px; align-items: center; justify-content: space-between; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+
+  .pip { display:inline-block; width:14px; height:14px; border-radius:50%; border:2px solid var(--gold); background: transparent; }
+  .pip.on { background: var(--gold); }
+  .pip.partial { background: linear-gradient(90deg, var(--gold) 50%, transparent 50%); }
+
+  .chip { display: inline-flex; align-items:center; gap:6px; padding:4px 10px; border:1px solid var(--gold); border-radius:999px; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:12px; text-transform: uppercase; letter-spacing:0.1em; color: var(--gold); background: rgba(242,169,0,0.08); }
+  .chip-burgundy { border-color: var(--burgundy-lt); color: var(--burgundy-lt); background: rgba(141,33,69,0.18); }
+
+  .header-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom: 14px; }
+  .back-btn { background: transparent; border:none; color: var(--gold); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:0.1em; cursor:pointer; padding: 6px 0; }
+
+  /* Setup */
+  .level-card { background: var(--bg-2); border: 2px solid var(--line); border-radius: 12px; padding: 14px; cursor: pointer; transition: border-color .15s, transform .08s; }
+  .level-card.foundation { border-left: 6px solid #3FAE5F; }
+  .level-card.advanced { border-left: 6px solid #C68A00; }
+  .level-card.pro { border-left: 6px solid var(--burgundy); }
+  .level-card.selected { border-color: var(--gold); background: linear-gradient(180deg, rgba(242,169,0,0.12), rgba(242,169,0,0.02)); }
+  .level-card:active { transform: scale(0.99); }
+
+  .club-tile { padding:10px; border:1px solid var(--line); border-radius:10px; background:var(--bg-2); text-align:center; cursor:pointer; user-select:none; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:13px; }
+  .club-tile.selected { border-color: var(--gold); background: rgba(242,169,0,0.10); color: var(--gold); }
+
+  .input { width: 100%; background: var(--bg-3); border: 1px solid var(--line); color: var(--text); padding: 12px 14px; border-radius: 10px; font-family: 'Barlow', sans-serif; font-size: 16px; }
+  .input:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+
+  /* Calendar */
+  .cal-grid { display: grid; grid-template-columns: 28px repeat(7, 1fr) 44px; gap: 2px; }
+  .cal-cell { background: var(--bg-2); border-radius: 6px; padding: 4px 2px; min-height: 42px; font-size: 11px; text-align: center; position: relative; font-family:'Barlow Condensed', sans-serif; font-weight:600; }
+  .cal-head { background: var(--burgundy-dk); color: var(--gold); padding: 5px 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; border-radius: 4px; font-family:'Rajdhani',sans-serif; }
+  .cal-week { background: var(--burgundy); color: var(--gold); display:flex; align-items:center; justify-content:center; font-weight:700; border-radius:4px; }
+  .cal-tally { background: var(--bg-3); display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size:13px; color: var(--gold); border-radius:4px; }
+  .cal-cell.thu { background: rgba(141,33,69,0.18); border: 1px solid rgba(242,169,0,0.25); }
+  .cal-cell.bh { background: rgba(242,169,0,0.10); }
+  .cal-cell.today { outline: 2px solid var(--gold); background: rgba(242,169,0,0.18); }
+  .cal-cell.done { background: rgba(63,174,95,0.18); }
+  .cal-day { font-size: 12px; font-weight: 700; color: var(--text); }
+  .cal-bh { font-size: 8px; color: var(--gold); display: block; }
+  .cal-tick { color: var(--green); font-size: 14px; line-height: 1; }
+  .cal-ball { display: block; margin: 1px auto 0; }
+
+  /* Set logger */
+  .big-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 96px; line-height: 1; color: var(--gold); text-shadow: 0 4px 20px rgba(242,169,0,0.3); }
+  .big-num small { color: var(--muted); font-size: 28px; }
+  .num-input { width: 100%; background: var(--bg-3); border: 2px solid var(--gold); color: var(--gold); padding: 16px; border-radius: 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 800; text-align: center; }
+  .num-input:focus { outline: none; background: rgba(242,169,0,0.10); }
+  .stepper-btn { width: 64px; height: 64px; border-radius: 12px; background: var(--burgundy); color: var(--text); border: 1px solid var(--gold); font-size: 28px; font-family: 'Rajdhani', sans-serif; font-weight: 700; cursor: pointer; }
+  .stepper-btn:active { transform: scale(0.95); }
+  .quick-btn { padding: 10px 14px; border-radius: 8px; background: var(--bg-3); color: var(--gold); border: 1px solid var(--line); font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; cursor: pointer; flex:1; }
+
+  .timer-circle { width: 200px; height: 200px; border-radius: 50%; background: var(--bg-3); border: 6px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 16px auto; box-shadow: inset 0 0 0 4px rgba(0,0,0,0.4); }
+  .timer-circle.run { border-color: var(--gold); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: inset 0 0 0 4px rgba(0,0,0,0.4), 0 0 0 0 rgba(242,169,0,0.4); } 50% { box-shadow: inset 0 0 0 4px rgba(0,0,0,0.4), 0 0 0 12px rgba(242,169,0,0); } }
+  .timer-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 72px; color: var(--gold); line-height: 1; }
+
+  .side-banner { display: flex; align-items:center; justify-content: center; padding: 14px; border-radius: 10px; background: linear-gradient(90deg, var(--burgundy), var(--burgundy-dk)); border: 1px solid var(--gold); margin: 8px 0 14px; font-family:'Rajdhani',sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--gold); color: var(--black); padding: 14px 20px; border-radius: 12px; font-family: 'Rajdhani', sans-serif; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 100; max-width: 380px; }
+  .toast strong { display: block; font-size: 16px; }
+  .toast small { font-family: 'Barlow', sans-serif; font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 13px; }
+
+  /* Confetti */
+  .confetti-piece { position: fixed; top: -10px; width: 8px; height: 14px; pointer-events: none; z-index: 90; animation: fall linear forwards; }
+  @keyframes fall {
+    0% { transform: translate(0, -10px) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--dx), 105vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 80; display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .modal { background: linear-gradient(180deg, var(--burgundy), var(--burgundy-dk)); border: 2px solid var(--gold); border-radius: 16px; padding: 22px; max-width: 400px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+
+  .progress-bar { height: 8px; background: var(--bg-3); border-radius: 999px; overflow: hidden; }
+  .progress-bar > div { height: 100%; background: linear-gradient(90deg, var(--gold), #FFCB42); transition: width 0.4s; }
+
+  .ach-row { display:flex; align-items:center; gap:10px; padding: 10px; border-radius: 8px; }
+  .ach-row.earned { background: rgba(242,169,0,0.10); border: 1px solid rgba(242,169,0,0.4); }
+  .ach-row.locked { background: rgba(255,255,255,0.03); border: 1px solid var(--line); opacity: 0.6; }
+
+  .session-row { padding: 10px 12px; border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line); display:flex; align-items:center; justify-content: space-between; }
+  .session-row + .session-row { margin-top: 6px; }
+
+  .technique li { margin-bottom: 6px; line-height: 1.45; }
+  .cue { font-style: italic; color: var(--gold); }
+
+  .ex-card { display:flex; gap:12px; align-items:center; padding: 14px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
+  .ex-card.done { border-color: var(--green); background: rgba(63,174,95,0.10); }
+  .ex-card:active { transform: scale(0.99); }
+  .ex-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--burgundy); border: 1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Rajdhani',sans-serif; font-weight:700; color: var(--gold); font-size: 11px; letter-spacing: 0.08em; flex-shrink: 0; }
+
+  .level-pill { display:inline-flex; align-items:center; padding: 4px 10px; border-radius: 999px; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .level-pill.foundation { background: #1F3D2A; color: #6BCB7E; border: 1px solid #3FAE5F; }
+  .level-pill.advanced { background: #3D2F0E; color: #E0B23B; border: 1px solid #C68A00; }
+  .level-pill.pro { background: #3D1626; color: #E76A8F; border: 1px solid var(--burgundy-lt); }
+
+  .nav-tabs { display: grid; grid-template-columns: repeat(5,1fr); gap: 4px; padding: 4px; background: var(--bg-2); border-radius: 12px; border: 1px solid var(--line); margin-top: 14px; }
+  .nav-tab { padding: 10px 2px; background: transparent; color: var(--muted); border: none; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:10px; text-transform:uppercase; letter-spacing:0.05em; cursor: pointer; border-radius: 8px; }
+  .nav-tab.active { background: var(--burgundy); color: var(--gold); }
+
+  /* Consent + sharing */
+  .consent-tick { display:flex; gap:10px; align-items:flex-start; padding:10px; border:1px solid var(--line); border-radius:10px; background: var(--bg-2); cursor:pointer; user-select:none; margin-bottom:8px; }
+  .consent-tick.on { border-color: var(--gold); background: rgba(242,169,0,0.08); }
+  .consent-box { width:22px; height:22px; border:2px solid var(--gold); border-radius:6px; flex-shrink:0; display:flex; align-items:center; justify-content:center; color: var(--black); font-weight:800; font-family:'Barlow Condensed',sans-serif; background: transparent; margin-top:1px; }
+  .consent-tick.on .consent-box { background: var(--gold); }
+  .consent-tick .consent-text { font-size:13px; line-height:1.45; }
+
+  .log-row { padding:12px; border-radius:10px; background: var(--bg-2); border: 1px solid var(--line); display:flex; align-items:center; justify-content: space-between; gap:8px; }
+  .log-row + .log-row { margin-top:6px; }
+  .log-row.sent { border-color: rgba(63,174,95,0.4); background: rgba(63,174,95,0.06); }
+  .log-row.failed { border-color: rgba(212,74,63,0.4); background: rgba(212,74,63,0.06); }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 4px; }
+
+  .help { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .stripe { height: 4px; background: linear-gradient(90deg, var(--burgundy), var(--gold)); border-radius: 2px; margin: 0 0 14px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+// =================== DATA ===================
+const CLUBS = [
+  { id:'acrfc', name:'Amersham & Chiltern RFC', short:'A&C',   cheers:["Up the burgundy!","For the swan and the axe!","A&C strong!","That's a Chiltern shift!"] },
+  { id:'eng',   name:'England Rugby',           short:'ENG',   cheers:["Sweet Chariot strength!","Power in white!","Carry them home!"] },
+  { id:'sco',   name:'Scotland Rugby',          short:'SCO',   cheers:["Flower of Scotland power!","Thistle and thunder!","Roar like Murrayfield!"] },
+  { id:'wal',   name:'Wales Rugby',             short:'WAL',   cheers:["Cymru am byth!","Red dragon roar!","Hwyl, Cymru!"] },
+  { id:'ire',   name:'Ireland Rugby',           short:'IRE',   cheers:["Up the boys in green!","Ireland's Call answered!","Shoulder to shoulder!"] },
+  { id:'fra',   name:'France Rugby',            short:'FRA',   cheers:["Allez les Bleus!","French flair!","Le coq chante!"] },
+  { id:'ita',   name:'Italy Rugby',             short:'ITA',   cheers:["Forza Azzurri!","Italian fire!","Avanti azzurri!"] },
+  { id:'nzl',   name:'All Blacks',              short:'NZL',   cheers:["Haka power!","Silver fern strong!","Kia kaha, kia toa!"] },
+  { id:'rsa',   name:'Springboks',              short:'RSA',   cheers:["Bokke power!","Green and gold!","Sterk soos 'n Bok!"] },
+  { id:'aus',   name:'Wallabies',               short:'AUS',   cheers:["Go you Wallabies!","Gold standard!","Wallabies on the charge!"] },
+  { id:'arg',   name:'Pumas',                   short:'ARG',   cheers:["Vamos Pumas!","Sangre y orgullo!","Roar of the Pampas!"] },
+  { id:'other', name:'Other',                   short:'OTH',   cheers:["Brilliant work!","Pure graft!","That's the standard!","Top set!"] }
+];
+function clubFor(id){ return CLUBS.find(c=>c.id===id) || CLUBS[CLUBS.length-1]; }
+
+const EXERCISES = {
+  foundation: [
+    {
+      id:'pushup_f', name:'Push-Up', pattern:'PUSH',
+      sets:3, type:'reps', target:12, targetLabel:'10–12 reps', restSeconds:60,
+      cues:['2s down','chest to floor','body rigid'],
+      steps:[
+        'High plank: hands slightly wider than shoulders. Body forms a straight line from head to heels.',
+        'Lower your chest slowly to the floor — take 2 full seconds on the way down.',
+        'Stop just before your chest touches the ground. Push back up powerfully.',
+        'Keep elbows at roughly 45° from your torso — not flared straight out to the sides.',
+        'Squeeze glutes and brace abs throughout. Keep hips level — avoid letting them sag or rise.'
+      ],
+      coachingCues:[
+        '"Armpits over little fingers" — this hand position protects your shoulders.',
+        'The 2-second lowering phase (eccentric) builds more strength than the push.',
+        'If your hips sag, drop to knee push-ups until you build the strength.'
+      ]
+    },
+    {
+      id:'squat_f', name:'Bodyweight Squat', pattern:'SQUAT',
+      sets:3, type:'reps', target:15, targetLabel:'12–15 reps', restSeconds:60,
+      cues:['Chest tall','2s pause at bottom','heels down'],
+      steps:[
+        'Feet shoulder-width apart, toes slightly turned out.',
+        'Sit back and down, keeping your chest tall and back straight.',
+        'Lower until your thighs are parallel to the floor (or as low as you comfortably can).',
+        'Pause 2 seconds at the bottom. Drive through your heels to stand.'
+      ],
+      coachingCues:[
+        '"Knees track over second toe" throughout — never let them cave inward.'
+      ]
+    },
+    {
+      id:'glute_f', name:'Glute Bridge', pattern:'HINGE',
+      sets:3, type:'reps', target:15, targetLabel:'15 reps', restSeconds:45,
+      cues:['Drive hips up','squeeze glutes hard','1s hold'],
+      steps:[
+        'Lie on your back, feet flat, knees bent to roughly 90°.',
+        'Drive both feet into the floor and press your hips up toward the ceiling.',
+        'Squeeze your glutes hard at the top. Hold 1 second. Lower slowly over 2 seconds.',
+        'Keep movement in the glutes — do not arch your lower back.'
+      ],
+      coachingCues:[
+        '"Push the floor away" rather than "lift my hips" — gives better glute activation.'
+      ]
+    },
+    {
+      id:'sideplank_f', name:'Side Plank', pattern:'CORE SIDES',
+      sets:3, type:'time_each_side', target:20, targetLabel:'20s each side', restSeconds:45,
+      cues:['Straight line head to feet','hips up','breathe'],
+      steps:[
+        'Lie on your side, forearm on the floor with elbow directly under your shoulder.',
+        'Stack your feet. Lift your hips off the floor until you form a straight line from head to feet.',
+        'Hold still. Breathe. Try not to let your hips sag — cue: "pull your bottom hip upward".',
+        'Easier version: bend the bottom knee to the floor.'
+      ],
+      coachingCues:[
+        '"Pull your bottom hip upward" is the key cue that prevents sagging.'
+      ]
+    }
+  ],
+  advanced: [
+    {
+      id:'pushup_a', name:'Decline Push-Up', pattern:'PUSH',
+      sets:4, type:'reps', target:10, targetLabel:'8–10 reps', restSeconds:60,
+      cues:['Feet on chair','steep angle','2s down'],
+      steps:[
+        'Place both feet on a chair. Hands stay on the floor.',
+        'Do the push-up as normal — the angle shifts more work to your upper chest and shoulders.',
+        'Lower slowly over 2 seconds. Chest just above the floor. Push up powerfully.',
+        'Keep elbows at roughly 45° from your torso. Body rigid head to heels.'
+      ],
+      coachingCues:[
+        '"Armpits over little fingers" — this hand position protects your shoulders.',
+        'The 2-second lowering phase (eccentric) builds more strength than the push.'
+      ]
+    },
+    {
+      id:'pullup_a', name:'Pull-Up / Negative', pattern:'PULL',
+      sets:4, type:'reps', target:8, targetLabel:'6–8 reps', restSeconds:90,
+      cues:['Chin over bar','4s slow lower','full hang'],
+      steps:[
+        'Hang from a bar with a full dead-hang, shoulders "packed" (not shrugging).',
+        'Pull until your chin clears the bar — lead with the chest, not the chin.',
+        'NEGATIVE: jump or step to the chin-over-bar position. Lower yourself over 4–5 full seconds. Push back up to reset.'
+      ],
+      coachingCues:[
+        '"Pull elbows to your hips" — not hands to your shoulders.',
+        'The slow lowering builds as much strength as the pull itself.',
+        'A doorframe pull-up bar costs around £15–20 and is worth it.'
+      ]
+    },
+    {
+      id:'squat_a', name:'Jump Squat', pattern:'SQUAT',
+      sets:4, type:'reps', target:10, targetLabel:'8–10 reps', restSeconds:75,
+      cues:['Squat to parallel','explode up','land soft'],
+      steps:[
+        'Squat to parallel as in the bodyweight squat. Explode upward as powerfully as possible.',
+        'Land softly on the balls of your feet, absorbing through ankles, knees and hips.',
+        'Stick the landing for 1 second before the next rep.'
+      ],
+      coachingCues:[
+        '"Knees track over second toe" throughout — never let them cave inward.',
+        'For jump squats: the landing is the skill. Quiet, controlled landings protect your knees.'
+      ]
+    },
+    {
+      id:'glute_a', name:'Single-Leg Glute Bridge', pattern:'HINGE',
+      sets:4, type:'reps_each_side', target:12, targetLabel:'10–12 each leg', restSeconds:60,
+      cues:['One foot flat','hips level','squeeze at top'],
+      steps:[
+        'Lie on your back. Same setup as a glute bridge but extend one leg straight.',
+        'Push up on the planted foot. Drive your hips up toward the ceiling.',
+        'Keep your hips level — the lifted-leg side should not drop.',
+        'Squeeze your glutes at the top. Lower slowly. Complete all reps, then switch.'
+      ],
+      coachingCues:[
+        '"Push the floor away" rather than "lift my hips" — gives better glute activation.'
+      ]
+    },
+    {
+      id:'hollow_a', name:'Hollow Body Hold', pattern:'CORE FRONT',
+      sets:4, type:'time', target:30, targetLabel:'25–30s hold', restSeconds:45,
+      cues:['Low back flat','legs at 45°','arms by ears'],
+      steps:[
+        'Lie flat. Press lower back firmly into the floor and hold it there.',
+        'Raise legs to roughly 45° and raise shoulders slightly off the floor.',
+        'Arms extend alongside body or past ears. Hold. Breathe. Lower back stays flat.',
+        'If your lower back lifts: raise your legs higher until it does not.'
+      ],
+      coachingCues:[
+        '"Glue your lower back to the floor" — the single most important cue.',
+        'These look easy. They are not. Slow and deliberate beats fast and sloppy.'
+      ]
+    },
+    {
+      id:'sideplank_a', name:'Side Plank Hip Dip', pattern:'CORE SIDES',
+      sets:4, type:'reps_each_side', target:10, targetLabel:'10 dips each', restSeconds:45,
+      cues:['Lower hip to floor','drive back up','controlled'],
+      steps:[
+        'Hold the side plank position. Lower your hips until they just touch the floor.',
+        'Drive back up to the straight-line position. That is one rep. Stay controlled.',
+        'Forearm on the floor, elbow directly under your shoulder throughout.'
+      ],
+      coachingCues:[
+        '"Pull your bottom hip upward" between dips to keep the line straight.'
+      ]
+    }
+  ],
+  pro: [
+    {
+      id:'pushup_p', name:'Clap Push-Up', pattern:'PUSH',
+      sets:5, type:'reps', target:8, targetLabel:'6–8 reps', restSeconds:90,
+      cues:['Explosive drive','hands leave floor','land soft'],
+      steps:[
+        'At the top of the push-up, push so hard that your hands leave the floor.',
+        'Clap once. Land with bent elbows and absorb the landing — never lock elbows on landing.',
+        'Reset to high plank position before the next rep.'
+      ],
+      coachingCues:[
+        '"Armpits over little fingers" — this hand position protects your shoulders.',
+        'Quality over quantity — stop the set if you cannot land softly.'
+      ]
+    },
+    {
+      id:'pullup_p', name:'Weighted Pull-Up', pattern:'PULL',
+      sets:5, type:'reps', target:6, targetLabel:'5–6 reps', restSeconds:90,
+      cues:['Backpack load','2s hold top','4s lower'],
+      steps:[
+        'Load a backpack with books. Put it on and complete pull-ups as above.',
+        'Pull until your chin clears the bar. Lead with the chest. Hold 2 seconds at top.',
+        'Lower over 4 full seconds. Full hang at the bottom.'
+      ],
+      coachingCues:[
+        '"Pull elbows to your hips" — not hands to your shoulders.',
+        'The slow lowering builds as much strength as the pull itself.'
+      ]
+    },
+    {
+      id:'squat_p', name:'Single-Leg Squat (wall)', pattern:'SQUAT',
+      sets:5, type:'reps_each_side', target:6, targetLabel:'5–6 each leg', restSeconds:90,
+      cues:['Wall touch for balance','heel down','full depth'],
+      steps:[
+        'Stand on one leg, touch one finger to a wall for balance only.',
+        'Sit down on the standing leg as far as you can. Heel stays flat on floor throughout.',
+        'Drive back up to standing. Complete all reps on one leg, then switch.'
+      ],
+      coachingCues:[
+        '"Knees track over second toe" — never let it cave inward.',
+        'Full depth beats more reps. Stop when depth breaks down.'
+      ]
+    },
+    {
+      id:'hinge_p', name:'Nordic Hamstring Curl', pattern:'HINGE',
+      sets:5, type:'reps', target:6, targetLabel:'5–6 reps', restSeconds:90,
+      cues:['5s eccentric lower','push up with hands','rigid hips'],
+      steps:[
+        'Kneel on a mat, feet firmly anchored under a heavy sofa or sturdy furniture.',
+        'Keep hips fully extended — body stays rigid from knee to shoulder like a plank.',
+        'Lower forward slowly using your hamstrings to resist gravity. Take 5 full seconds.',
+        'When you can no longer resist, catch with your hands. Push back to kneeling to reset.'
+      ],
+      coachingCues:[
+        'For Nordics: the body lowers like a plank pivoting at the knee — NOT a hip hinge.'
+      ]
+    },
+    {
+      id:'hollow_p', name:'Hollow Body Rocks', pattern:'CORE FRONT',
+      sets:5, type:'reps', target:12, targetLabel:'12 rocks', restSeconds:45,
+      cues:['Stay rigid','rock forward/back','never break shape'],
+      steps:[
+        'Hold the hollow body position (low back glued to the floor).',
+        'Rock gently forward and backward — that is one rock.',
+        'Stay completely rigid throughout — like a rocking chair keeping its shape.'
+      ],
+      coachingCues:[
+        '"Glue your lower back to the floor" — the single most important cue.'
+      ]
+    },
+    {
+      id:'cope_p', name:'Copenhagen Plank', pattern:'CORE SIDES',
+      sets:5, type:'time_each_side', target:25, targetLabel:'25s each side', restSeconds:60,
+      cues:['Top foot on chair','bottom leg free','stay rigid'],
+      steps:[
+        'Lie on your side. Place your top foot on the edge of a chair beside you.',
+        'Support on your forearm below. Press through the top foot to lift your hips.',
+        'Body forms a straight line. This trains the inner thigh — critical for changing direction.'
+      ],
+      coachingCues:[
+        '"Pull your bottom hip upward" is the key cue that prevents sagging.',
+        'Copenhagen planks strengthen the adductors, which protect against groin strains.'
+      ]
+    }
+  ]
+};
+
+const ACHIEVEMENTS = [
+  { id:'first_session', name:'First Session', desc:'Complete your first session',                   emoji:'🥇' },
+  { id:'hat_trick',     name:'Hat Trick',     desc:'Complete 3 sessions',                            emoji:'🎩' },
+  { id:'veteran',       name:'Veteran',       desc:'Complete 10 sessions',                           emoji:'🛡️' },
+  { id:'perfect',       name:'Perfect Session',desc:'Hit every target on first attempt in one session',emoji:'⭐' },
+  { id:'century',       name:'Century Club',  desc:'Complete 100 sets all-time',                     emoji:'💯' },
+  { id:'week_warrior',  name:'Week Warrior',  desc:'3 sessions in one calendar week',                emoji:'⚔️' },
+  { id:'levelled_up',   name:'Levelled Up',   desc:'Move up to a higher level',                      emoji:'⬆️' },
+  { id:'streak_3',      name:'On A Roll',     desc:'3-day session streak',                           emoji:'🔥' },
+  { id:'streak_5',      name:'Five In A Row', desc:'5-day session streak',                           emoji:'⚡' },
+  { id:'iron_will',     name:'Iron Will',     desc:'Complete 10 sessions of any one level',          emoji:'⚙️' }
+];
+
+const STORAGE_KEY = 'ss_v1_jamie';
+const CONSENT_KEY = 'ss_v1_parent_consent';
+const SHARE_LOG_KEY = 'ss_v1_share_log';
+const APP_VERSION = '1.1.0';
+const PROGRAMME_START = new Date(2026, 4, 4); // May 4 2026 (month is 0-indexed)
+const PROGRAMME_WEEKS = 18;
+const BANK_HOLIDAYS = new Set(['2026-05-04','2026-05-25','2026-08-31']);
+
+// =================== COACH ACHIEVEMENT LOG (Google Sheet) ===================
+// Paste the Apps Script Web-App URL between the quotes once your coach has deployed
+// the script in apps-script.gs (see SHARE-SETUP.md). Leave empty to disable sharing.
+const SHARE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyk5LM35fHPPT4XZ3p62S8pHFBLv9O0j0zYPHA2wU7ZMVzHHGxNHko_QjSQK4qpamJh4A/exec';
+
+// =================== HELPERS ===================
+function pad(n){ return String(n).padStart(2,'0'); }
+function dateKey(d){ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+function addDays(d,n){ const c=new Date(d); c.setDate(c.getDate()+n); return c; }
+function isThursday(d){ return d.getDay()===4; }
+function startOfISOWeek(d){ const c=new Date(d); const day=(c.getDay()||7)-1; c.setDate(c.getDate()-day); c.setHours(0,0,0,0); return c; }
+
+function defaultState(){
+  return {
+    profile: null,
+    stats: { xp:0, totalSets:0, totalSessions:0 },
+    achievements: [],
+    perExerciseSets: {},     // exerciseId -> total sets logged (full + partial)
+    perExerciseFullSets: {}, // exerciseId -> sets where target was hit
+    sessionsByLevel: { foundation:0, advanced:0, pro:0 },
+    qualifiedFor: { advanced:false, pro:false },
+    qualOfferAcked: { advanced:false, pro:false }, // session-done prompt dismissed
+    sessions: [],
+    currentSession: null
+  };
+}
+
+function computeQualifications(perExFull){
+  return {
+    advanced: EXERCISES.foundation.every(ex => (perExFull[ex.id]||0) >= 6),
+    pro:      EXERCISES.advanced.every(ex => (perExFull[ex.id]||0) >= 6)
+  };
+}
+
+const LEVEL_RANK = { foundation:0, advanced:1, pro:2 };
+
+function loadState(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return defaultState();
+    return { ...defaultState(), ...JSON.parse(raw) };
+  } catch(e){ return defaultState(); }
+}
+function saveState(s){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch(e){}
+}
+
+function loadConsent(){
+  try { const raw = localStorage.getItem(CONSENT_KEY); return raw ? JSON.parse(raw) : null; }
+  catch(e){ return null; }
+}
+function saveConsent(c){
+  try { localStorage.setItem(CONSENT_KEY, JSON.stringify(c)); } catch(e){}
+}
+function loadShareLog(){
+  try { const raw = localStorage.getItem(SHARE_LOG_KEY); return raw ? JSON.parse(raw) : []; }
+  catch(e){ return []; }
+}
+function saveShareLog(arr){
+  try { localStorage.setItem(SHARE_LOG_KEY, JSON.stringify(arr)); } catch(e){}
+}
+
+// Apps Script web apps accept text/plain to avoid a CORS preflight.
+// We POST a JSON string with that mime type and the script JSON.parses the body.
+async function postToCoachLog(payload){
+  if (!SHARE_ENDPOINT) {
+    return { ok:false, error:'Sharing is not set up yet — ask your coach for the link.' };
+  }
+  try {
+    const res = await fetch(SHARE_ENDPOINT, {
+      method:'POST',
+      headers: { 'Content-Type':'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect:'follow'
+    });
+    if (!res.ok) return { ok:false, error:`Server returned ${res.status}` };
+    return { ok:true };
+  } catch (e) {
+    return { ok:false, error: (e && e.message) || 'Network error' };
+  }
+}
+
+function buildSharePayload({ session, profile, consent }){
+  const exsDef = EXERCISES[session.level];
+  // Each session summary now stores per-exercise breakdown if present; fall back to defs.
+  const exDetail = (session.exerciseDetail || []).map(d => {
+    return `${d.name}: ${d.full}/${d.sets} full${d.partial? ` (+${d.partial} partial)`:''}`;
+  }).join(' | ');
+  const startedAt = session.startedAt ? new Date(session.startedAt) : null;
+  const completedAt = session.completedAt ? new Date(session.completedAt) : null;
+  const durationMin = (startedAt && completedAt)
+    ? Math.max(1, Math.round((completedAt - startedAt) / 60000))
+    : null;
+  return {
+    appVersion: APP_VERSION,
+    playerName: profile.name,
+    programmeWeek: programmeWeekFor(new Date(session.date)) || '',
+    sessionDate: session.date,
+    level: session.level,
+    durationMin,
+    totalSets: session.setCount || 0,
+    fullSets: session.fullCount || 0,
+    partialSets: session.partialCount || 0,
+    xp: session.xp || 0,
+    perfect: !!session.perfect,
+    exercises: exDetail,
+    parentName: (consent && consent.granted) ? consent.parentName : '',
+    consentSignedAt: (consent && consent.granted) ? consent.signedAt : ''
+  };
+}
+
+function computeStreak(sessions){
+  if (!sessions.length) return 0;
+  const days = new Set(sessions.filter(s=>s.completed).map(s=>s.date));
+  let streak = 0;
+  let d = new Date(); d.setHours(0,0,0,0);
+  if (!days.has(dateKey(d))) d = addDays(d,-1);
+  while (days.has(dateKey(d))) { streak++; d = addDays(d,-1); }
+  return streak;
+}
+
+function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function programmeWeekFor(d){
+  const ms = (d - PROGRAMME_START) / (1000*60*60*24);
+  if (ms < 0) return 0;
+  return Math.floor(ms/7) + 1;
+}
+
+// =================== UI: SHIELD ===================
+function Shield({ size=80 }){
+  const w = size, h = Math.round(size*1.2);
+  return (
+    <svg viewBox="0 0 100 120" width={w} height={h} style={{display:'block'}}>
+      <defs>
+        <clipPath id={`shield-clip-${size}`}>
+          <path d="M5 5 L95 5 L95 70 Q95 90 50 115 Q5 90 5 70 Z"/>
+        </clipPath>
+      </defs>
+      <path d="M5 5 L95 5 L95 70 Q95 90 50 115 Q5 90 5 70 Z" fill="#8D2145" stroke="#F2A900" strokeWidth="3"/>
+      <rect x="5" y="5" width="90" height="22" fill="#07090D" clipPath={`url(#shield-clip-${size})`}/>
+      <text x="50" y="14" textAnchor="middle" fontFamily="Rajdhani" fontWeight="700" fontSize="6.5" fill="#F2A900" letterSpacing="1">AMERSHAM &amp; CHILTERN</text>
+      <text x="50" y="22" textAnchor="middle" fontFamily="Rajdhani" fontWeight="700" fontSize="5.5" fill="#F4F1EA" letterSpacing="2.5">RUGBY</text>
+      <text x="50" y="50" textAnchor="middle" fontFamily="Rajdhani" fontWeight="700" fontSize="14" fill="#F2A900" letterSpacing="2">U13</text>
+      <text x="50" y="72" textAnchor="middle" fontFamily="Rajdhani" fontWeight="700" fontSize="9" fill="#F4F1EA" letterSpacing="1.5">SUMMER</text>
+      <text x="50" y="84" textAnchor="middle" fontFamily="Rajdhani" fontWeight="700" fontSize="9" fill="#F4F1EA" letterSpacing="1.5">STRONG</text>
+      <text x="50" y="103" textAnchor="middle" fontFamily="Rajdhani" fontWeight="700" fontSize="10" fill="#F2A900" letterSpacing="2.5">2026</text>
+    </svg>
+  );
+}
+
+function RugbyBall({ size=12, color='#F2A900' }){
+  return (
+    <svg viewBox="0 0 24 16" width={size*1.5} height={size} style={{display:'block'}}>
+      <ellipse cx="12" cy="8" rx="11" ry="5.6" fill={color} stroke="#07090D" strokeWidth="0.6"/>
+      <line x1="3" y1="8" x2="21" y2="8" stroke="#07090D" strokeWidth="0.7"/>
+      <line x1="9"  y1="6" x2="9"  y2="10" stroke="#07090D" strokeWidth="0.7"/>
+      <line x1="12" y1="6" x2="12" y2="10" stroke="#07090D" strokeWidth="0.7"/>
+      <line x1="15" y1="6" x2="15" y2="10" stroke="#07090D" strokeWidth="0.7"/>
+    </svg>
+  );
+}
+
+// =================== CONFETTI ===================
+function fireConfetti(){
+  const colours = ['#F2A900','#8D2145','#3FAE5F','#F4F1EA'];
+  const N = 50;
+  for (let i=0;i<N;i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = (Math.random()*100)+'vw';
+    piece.style.background = colours[Math.floor(Math.random()*colours.length)];
+    piece.style.setProperty('--dx', (Math.random()*200 - 100)+'px');
+    piece.style.animationDuration = (1.4 + Math.random()*1.4)+'s';
+    piece.style.animationDelay = (Math.random()*0.3)+'s';
+    if (Math.random()>0.5) piece.style.borderRadius = '50%';
+    document.body.appendChild(piece);
+    setTimeout(()=>piece.remove(), 4000);
+  }
+}
+
+// =================== TOAST ===================
+function useToast(){
+  const [toast, setToast] = useState(null);
+  const tRef = useRef();
+  function show(payload, ms=3500){
+    setToast(payload);
+    clearTimeout(tRef.current);
+    tRef.current = setTimeout(()=>setToast(null), ms);
+  }
+  return [toast, show];
+}
+
+// =================== SETUP ===================
+function SetupScreen({ onComplete }){
+  const [name, setName] = useState('');
+  const [level, setLevel] = useState(null);
+  const [clubs, setClubs] = useState([]);
+
+  const valid = name.trim().length>0 && level && clubs.length>0;
+
+  function toggleClub(id){
+    setClubs(c => c.includes(id) ? c.filter(x=>x!==id) : [...c, id]);
+  }
+
+  return (
+    <div>
+      <div style={{textAlign:'center', padding:'8px 0 16px'}}>
+        <Shield size={130}/>
+        <h1 style={{marginTop:10}}>Summer Strong</h1>
+        <p className="label" style={{marginTop:6}}>U13 · 2026 · 16 weeks of work</p>
+      </div>
+      <div className="stripe"></div>
+
+      <h3 style={{marginBottom:8}}>Your name</h3>
+      <input
+        className="input"
+        type="text"
+        placeholder="e.g. Jamie"
+        value={name}
+        onChange={e=>setName(e.target.value)}
+        maxLength={20}
+      />
+
+      <h3 style={{margin:'18px 0 8px'}}>Pick your level</h3>
+      <div style={{display:'grid', gap:10}}>
+        {[
+          { id:'foundation', name:'Foundation', sub:'Steady state — 4 exercises', desc:'3 sets · learn the form' },
+          { id:'advanced',   name:'Advanced',   sub:'A-team ambition — 6 exercises', desc:'4 sets · harder variations' },
+          { id:'pro',        name:'Pro',        sub:'Stretch level — 6 exercises', desc:'5 sets · hardest variations' }
+        ].map(L => (
+          <div key={L.id} className={`level-card ${L.id} ${level===L.id?'selected':''}`} onClick={()=>setLevel(L.id)}>
+            <div className="row-between">
+              <div>
+                <h3>{L.name}</h3>
+                <div className="label" style={{marginTop:2}}>{L.sub}</div>
+              </div>
+              <span className={`level-pill ${L.id}`}>{L.id}</span>
+            </div>
+            <div className="help" style={{marginTop:6}}>{L.desc}</div>
+          </div>
+        ))}
+      </div>
+      <div className="card" style={{borderColor:'var(--gold)', background:'rgba(242,169,0,0.08)', marginTop:10}}>
+        <p style={{margin:0, fontSize:13, lineHeight:1.5}}>
+          <strong style={{color:'var(--gold)'}}>Honest check.</strong> Pick the level you can do <em>in one go</em>, set after set. If you still need to split a set into chunks at this level, you’re not ready for the one above. You can switch any time in Settings.
+        </p>
+      </div>
+
+      <h3 style={{margin:'18px 0 8px'}}>Pick your clubs</h3>
+      <p className="help" style={{marginBottom:10}}>We'll celebrate your sessions in your colours. Pick one or more.</p>
+      <div className="grid-3" style={{gridTemplateColumns:'repeat(3,1fr)'}}>
+        {CLUBS.map(c => (
+          <div key={c.id} className={`club-tile ${clubs.includes(c.id)?'selected':''}`} onClick={()=>toggleClub(c.id)}>
+            {c.short}
+            <div style={{fontSize:10, color:'var(--muted)', textTransform:'uppercase', marginTop:2, letterSpacing:'0.05em', fontWeight:500}}>{c.name.replace(' Rugby','').replace(' RFC','')}</div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        className="btn btn-primary"
+        style={{marginTop:22}}
+        disabled={!valid}
+        onClick={()=>onComplete({ name: name.trim(), level, clubs })}
+      >Let's Go</button>
+    </div>
+  );
+}
+
+// =================== HOME ===================
+function HomeScreen({ state, navigate, dispatch }){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const todayKey = dateKey(today);
+  const todaySession = state.sessions.find(s => s.date === todayKey);
+  const inProgress = state.currentSession && state.currentSession.date === todayKey && !state.currentSession.completed;
+  const streak = computeStreak(state.sessions);
+  const weekNum = programmeWeekFor(today);
+  const club = clubFor(state.profile.clubs[0]);
+
+  const ctaLabel = inProgress
+    ? 'Continue Today’s Session'
+    : todaySession
+      ? 'Today: Done ✓'
+      : 'Start Today’s Session';
+
+  function startSession(){
+    if (todaySession && !inProgress){ return; }
+    if (inProgress) { navigate({name:'session'}); return; }
+    const exs = EXERCISES[state.profile.level];
+    const session = {
+      date: todayKey,
+      level: state.profile.level,
+      startedAt: Date.now(),
+      completed: false,
+      exercises: Object.fromEntries(exs.map(ex => [
+        ex.id,
+        { sets: Array.from({length: ex.sets}, () => ({ complete:false })) }
+      ]))
+    };
+    dispatch({ type:'START_SESSION', session });
+    navigate({ name:'session' });
+  }
+
+  return (
+    <div>
+      <div className="row-between" style={{marginBottom:14}}>
+        <div className="row" style={{gap:10}}>
+          <Shield size={44}/>
+          <div>
+            <h2 style={{lineHeight:1}}>Hi {state.profile.name}</h2>
+            <div className="label" style={{marginTop:2}}>Week {weekNum>0?weekNum:'—'} · {state.profile.level.toUpperCase()}</div>
+          </div>
+        </div>
+        <button className="btn-ghost btn btn-sm" onClick={()=>navigate({name:'settings'})}>⚙</button>
+      </div>
+
+      <div className="grid-3" style={{marginBottom:14}}>
+        <div className="card" style={{textAlign:'center', padding:'12px 6px'}}>
+          <div className="stat-num" style={{fontSize:32, color:'var(--gold)'}}>{state.stats.xp}</div>
+          <div className="label">XP</div>
+        </div>
+        <div className="card" style={{textAlign:'center', padding:'12px 6px'}}>
+          <div className="stat-num" style={{fontSize:32, color:'var(--gold)'}}>{streak}</div>
+          <div className="label">Day streak</div>
+        </div>
+        <div className="card" style={{textAlign:'center', padding:'12px 6px'}}>
+          <div className="stat-num" style={{fontSize:32, color:'var(--gold)'}}>{state.stats.totalSessions}</div>
+          <div className="label">Sessions</div>
+        </div>
+      </div>
+
+      <button
+        className="btn btn-primary"
+        style={{padding:'18px', fontSize:18}}
+        onClick={startSession}
+        disabled={!!todaySession && !inProgress}
+      >
+        {ctaLabel}
+      </button>
+      {isThursday(today) && (
+        <div className="row" style={{justifyContent:'center', marginTop:8, color:'var(--gold)', fontFamily:'Rajdhani', fontWeight:700, letterSpacing:'.08em', fontSize:13, textTransform:'uppercase'}}>
+          <RugbyBall size={14}/> Thursday — touch rugby 7–8pm counts too
+        </div>
+      )}
+
+      <h3 style={{margin:'22px 0 10px'}}>Recent sessions</h3>
+      {state.sessions.slice().reverse().slice(0,5).map(s => (
+        <div className="session-row" key={s.date}>
+          <div>
+            <div style={{fontFamily:'Rajdhani', fontWeight:700, fontSize:15}}>{new Date(s.date).toLocaleDateString('en-GB',{weekday:'short', day:'numeric', month:'short'})}</div>
+            <div className="help">{s.setCount} sets · +{s.xp} XP{s.perfect?' · ⭐ Perfect':''}</div>
+          </div>
+          <span className={`level-pill ${s.level}`}>{s.level}</span>
+        </div>
+      ))}
+      {state.sessions.length===0 && <p className="help">Once you log a session it'll show up here. {pickRandom(club.cheers)}</p>}
+
+      <div className="nav-tabs">
+        <button className="nav-tab active">Home</button>
+        <button className="nav-tab" onClick={()=>navigate({name:'calendar'})}>Calendar</button>
+        <button className="nav-tab" onClick={()=>navigate({name:'sets'})}>Sets</button>
+        <button className="nav-tab" onClick={()=>navigate({name:'achievements'})}>Badges</button>
+        <button className="nav-tab" onClick={()=>navigate({name:'log'})}>Log</button>
+      </div>
+    </div>
+  );
+}
+
+// =================== SESSION ===================
+function SessionScreen({ state, navigate, dispatch }){
+  const session = state.currentSession;
+  const exs = EXERCISES[session.level];
+  const allDone = exs.every(ex => session.exercises[ex.id].sets.every(st => st.complete));
+
+  function completeSession(){
+    dispatch({ type:'COMPLETE_SESSION' });
+    navigate({ name:'session_done' });
+  }
+
+  return (
+    <div>
+      <div className="header-bar">
+        <button className="back-btn" onClick={()=>navigate({name:'home'})}>← Home</button>
+        <span className={`level-pill ${session.level}`}>{session.level}</span>
+      </div>
+      <h1>Today's session</h1>
+      <p className="help" style={{marginBottom:14}}>Complete every exercise, in order. Tap one to start.</p>
+
+      <div style={{display:'grid', gap:10}}>
+        {exs.map((ex, i) => {
+          const data = session.exercises[ex.id];
+          const done = data.sets.filter(s=>s.complete).length;
+          const isDone = done===ex.sets;
+          return (
+            <div key={ex.id} className={`ex-card ${isDone?'done':''}`} onClick={()=>navigate({name:'exercise', id: ex.id})}>
+              <div className="ex-icon">{ex.pattern.split(' ')[0]}</div>
+              <div style={{flex:1}}>
+                <div style={{fontFamily:'Rajdhani', fontWeight:700, fontSize:17}}>{ex.name}</div>
+                <div className="help">{ex.sets} × {ex.targetLabel} · Rest {ex.restSeconds}s</div>
+              </div>
+              <div style={{textAlign:'right'}}>
+                <div className="stat-num" style={{fontSize:22, color: isDone?'var(--green)':'var(--gold)'}}>{done}/{ex.sets}</div>
+                {isDone && <div style={{fontSize:11, color:'var(--green)', fontFamily:'Rajdhani', fontWeight:700, letterSpacing:'.1em'}}>DONE</div>}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <button
+        className="btn btn-primary"
+        style={{marginTop:18}}
+        disabled={!allDone}
+        onClick={completeSession}
+      >
+        {allDone ? 'Finish Session' : 'Finish (complete all exercises first)'}
+      </button>
+    </div>
+  );
+}
+
+// =================== EXERCISE / SET LOGGER ===================
+function ExerciseScreen({ state, dispatch, navigate, exerciseId }){
+  const session = state.currentSession;
+  const ex = EXERCISES[session.level].find(e=>e.id===exerciseId);
+  const exData = session.exercises[exerciseId];
+  const completedSets = exData.sets.filter(s=>s.complete).length;
+  const totalSets = ex.sets;
+
+  // Find next incomplete set index
+  const nextIdx = exData.sets.findIndex(s=>!s.complete);
+  const allDone = nextIdx === -1;
+
+  // ----- Live state for the working set -----
+  const isReps = ex.type === 'reps' || ex.type === 'reps_each_side';
+  const isTime = ex.type === 'time' || ex.type === 'time_each_side';
+  const isEachSide = ex.type === 'reps_each_side' || ex.type === 'time_each_side';
+
+  // Rep state
+  const [side, setSide] = useState('left'); // 'left' or 'right'
+  const [leftTotal, setLeftTotal] = useState(0);
+  const [rightTotal, setRightTotal] = useState(0);
+  const [leftFirst, setLeftFirst] = useState(null); // null | true | false (true = hit target on first log)
+  const [rightFirst, setRightFirst] = useState(null);
+  const [inputVal, setInputVal] = useState(ex.target);
+
+  // Time state
+  const [timerSec, setTimerSec] = useState(ex.target);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [timerStartedFresh, setTimerStartedFresh] = useState(false); // tracks whether first run completed without quitting early
+  const [leftTimeFinished, setLeftTimeFinished] = useState(false);
+
+  // Rest state
+  const [restRemaining, setRestRemaining] = useState(0);
+  const [restRunning, setRestRunning] = useState(false);
+
+  // Reset working state when set index changes or exercise changes
+  useEffect(() => {
+    setSide('left');
+    setLeftTotal(0); setRightTotal(0);
+    setLeftFirst(null); setRightFirst(null);
+    setInputVal(ex.target);
+    setTimerSec(ex.target);
+    setTimerRunning(false);
+    setTimerStartedFresh(false);
+    setLeftTimeFinished(false);
+  }, [nextIdx, exerciseId]);
+
+  // Timer ticker
+  useEffect(() => {
+    if (!timerRunning) return;
+    if (timerSec <= 0) return;
+    const t = setTimeout(()=> setTimerSec(s => s-1), 1000);
+    return () => clearTimeout(t);
+  }, [timerRunning, timerSec]);
+
+  // Rest ticker
+  useEffect(() => {
+    if (!restRunning) return;
+    if (restRemaining <= 0) { setRestRunning(false); return; }
+    const t = setTimeout(()=> setRestRemaining(r=>r-1), 1000);
+    return () => clearTimeout(t);
+  }, [restRunning, restRemaining]);
+
+  // Time-based: detect side completion (hits 0)
+  useEffect(() => {
+    if (!isTime) return;
+    if (timerRunning && timerSec <= 0){
+      // Side complete by full timer
+      handleTimeComplete(true /* fullTimer */);
+    }
+  }, [timerSec, timerRunning, isTime]);
+
+  function handleTimeComplete(fullTimer){
+    // fullTimer: did the timer reach zero (true) or did user click "done early" (false)
+    setTimerRunning(false);
+    if (ex.type === 'time'){
+      const hitFull = fullTimer;
+      const hitFirst = fullTimer && timerStartedFresh;
+      finishSet({ hitFull, hitFirstAttempt: hitFirst });
+    } else {
+      // time_each_side
+      if (side === 'left'){
+        setLeftTimeFinished(fullTimer);
+        setLeftFirst(fullTimer && timerStartedFresh);
+        setSide('right');
+        setTimerSec(ex.target);
+        setTimerStartedFresh(false);
+        setTimerRunning(false);
+      } else {
+        const rFull = fullTimer;
+        const rFirst = fullTimer && timerStartedFresh;
+        setRightFirst(rFirst);
+        const hitFull = leftTimeFinished && rFull;
+        const hitFirst = hitFull && (leftFirst===true) && rFirst;
+        finishSet({ hitFull, hitFirstAttempt: hitFirst });
+      }
+    }
+  }
+
+  function startTimer(){
+    if (timerSec === ex.target && !timerRunning) setTimerStartedFresh(true);
+    setTimerRunning(true);
+  }
+
+  function logReps(){
+    const n = Math.max(0, Math.floor(Number(inputVal)||0));
+    if (n === 0) return;
+    if (side === 'left'){
+      const newTotal = leftTotal + n;
+      if (leftFirst === null) setLeftFirst(n >= ex.target);
+      setLeftTotal(newTotal);
+      setInputVal(Math.max(1, ex.target - newTotal));
+      if (newTotal >= ex.target){
+        if (ex.type === 'reps_each_side'){
+          setLeftTimeFinished(true); // reuse flag: left side hit full
+          setSide('right');
+          setInputVal(ex.target);
+        } else {
+          const lFirst = (leftFirst===null ? n>=ex.target : leftFirst);
+          finishSet({ hitFull:true, hitFirstAttempt: lFirst });
+        }
+      }
+    } else {
+      const newTotal = rightTotal + n;
+      if (rightFirst === null) setRightFirst(n >= ex.target);
+      setRightTotal(newTotal);
+      setInputVal(Math.max(1, ex.target - newTotal));
+      if (newTotal >= ex.target){
+        const lFirst = leftFirst===true;
+        const rFirst = (rightFirst===null ? n>=ex.target : rightFirst);
+        const hitFull = leftTimeFinished===true && true; // right just hit
+        finishSet({ hitFull, hitFirstAttempt: hitFull && lFirst && rFirst });
+      }
+    }
+  }
+
+  function endSetShort(){
+    if (ex.type === 'reps'){
+      const lFull = leftTotal >= ex.target;
+      finishSet({ hitFull: lFull, hitFirstAttempt: lFull && leftFirst===true });
+      return;
+    }
+    if (ex.type === 'time'){
+      handleTimeComplete(false);
+      return;
+    }
+    if (ex.type === 'reps_each_side'){
+      if (side === 'left'){
+        const lFull = leftTotal >= ex.target;
+        setLeftTimeFinished(lFull);
+        setLeftFirst(leftFirst===null ? lFull : leftFirst);
+        setSide('right');
+        setInputVal(ex.target);
+      } else {
+        const lFull = leftTimeFinished===true;
+        const rFull = rightTotal >= ex.target;
+        finishSet({
+          hitFull: lFull && rFull,
+          hitFirstAttempt: lFull && rFull && leftFirst===true && rightFirst===true
+        });
+      }
+      return;
+    }
+    if (ex.type === 'time_each_side'){
+      handleTimeComplete(false);
+      return;
+    }
+  }
+
+  function finishSet({ hitFull, hitFirstAttempt }){
+    dispatch({ type:'COMPLETE_SET', exerciseId, setIndex: nextIdx, hitFull, hitFirstAttempt });
+    const isLastSet = nextIdx === totalSets - 1;
+    if (!isLastSet){
+      setRestRemaining(ex.restSeconds);
+      setRestRunning(true);
+    }
+  }
+
+  function bump(d){
+    setInputVal(v => Math.max(0, Math.floor(Number(v)||0) + d));
+  }
+
+  // ===== Render =====
+  if (allDone){
+    return (
+      <div>
+        <div className="header-bar">
+          <button className="back-btn" onClick={()=>navigate({name:'session'})}>← Back to session</button>
+          <span className="chip">{ex.pattern}</span>
+        </div>
+        <h1>{ex.name}</h1>
+        <div className="card" style={{marginTop:12, textAlign:'center', padding:24, borderColor:'var(--green)'}}>
+          <div style={{fontSize:48, color:'var(--green)'}}>✓</div>
+          <h2 style={{marginTop:8, color:'var(--green)'}}>Exercise done</h2>
+          <p className="help" style={{marginTop:6}}>{ex.sets} of {ex.sets} sets logged.</p>
+        </div>
+        <button className="btn btn-primary" style={{marginTop:14}} onClick={()=>navigate({name:'session'})}>Back to session</button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="header-bar">
+        <button className="back-btn" onClick={()=>navigate({name:'session'})}>← Session</button>
+        <span className="chip">{ex.pattern}</span>
+      </div>
+
+      <h1 style={{marginBottom:4}}>{ex.name}</h1>
+      <div className="row" style={{gap:6, marginBottom:12, flexWrap:'wrap'}}>
+        {exData.sets.map((s, i) => {
+          const st = !s.complete ? 'off' : (s.hitFull ? 'full' : 'partial');
+          return <Pip key={i} state={st}/>;
+        })}
+        <span className="label" style={{marginLeft:8}}>Set {completedSets+1} of {totalSets} · {ex.targetLabel}</span>
+      </div>
+
+      {restRunning ? (
+        <RestPanel remaining={restRemaining} total={ex.restSeconds} onSkip={()=>{ setRestRunning(false); setRestRemaining(0); }}/>
+      ) : (
+        <>
+          {isEachSide && (
+            <div className="side-banner">{side === 'left' ? '← LEFT SIDE' : 'RIGHT SIDE →'}</div>
+          )}
+          {isReps ? (
+            <RepLogger
+              ex={ex}
+              side={side}
+              total={side==='left'?leftTotal:rightTotal}
+              inputVal={inputVal}
+              setInputVal={setInputVal}
+              bump={bump}
+              logReps={logReps}
+              endSetShort={endSetShort}
+              isEachSide={isEachSide}
+            />
+          ) : (
+            <TimePanel
+              ex={ex}
+              timerSec={timerSec}
+              running={timerRunning}
+              onStart={startTimer}
+              onPause={()=>setTimerRunning(false)}
+              onReset={()=>{ setTimerSec(ex.target); setTimerRunning(false); setTimerStartedFresh(false); }}
+              onDoneEarly={()=>handleTimeComplete(false)}
+              side={side}
+            />
+          )}
+          <p className="help" style={{textAlign:'center', marginTop:14}}>Push for the full {ex.target}{isTime?'s':''} in one go if you can. Ending short still counts — just not as a full tick.</p>
+        </>
+      )}
+
+      <details className="card" style={{marginTop:18, padding:14}}>
+        <summary style={{cursor:'pointer', fontFamily:'Rajdhani', fontWeight:700, color:'var(--gold)', textTransform:'uppercase', letterSpacing:'.06em', fontSize:13}}>Technique guide</summary>
+        <ol className="technique" style={{marginTop:10, paddingLeft:20}}>
+          {ex.steps.map((s,i)=><li key={i}>{s}</li>)}
+        </ol>
+        <h4 style={{marginTop:14, color:'var(--gold)', fontSize:12, letterSpacing:'.1em'}}>COACHING CUES</h4>
+        <ul style={{marginTop:6, paddingLeft:20}}>
+          {ex.coachingCues.map((s,i)=><li className="cue" key={i}>{s}</li>)}
+        </ul>
+        <h4 style={{marginTop:12, color:'var(--gold)', fontSize:12, letterSpacing:'.1em'}}>QUICK CUES</h4>
+        <p style={{marginTop:4}}>{ex.cues.join(' · ')}</p>
+      </details>
+    </div>
+  );
+}
+
+function Pip({ state }){
+  const cls = state === 'full' ? 'on' : state === 'partial' ? 'partial' : '';
+  return <span className={`pip ${cls}`}/>;
+}
+
+function RepLogger({ ex, side, total, inputVal, setInputVal, bump, logReps, endSetShort, isEachSide }){
+  const target = ex.target;
+  const remaining = Math.max(0, target - total);
+  return (
+    <div className="card" style={{textAlign:'center', padding:18}}>
+      <div className="big-num">{total}<small> / {target}</small></div>
+      <div className="label" style={{marginTop:6}}>{remaining===0?'TARGET HIT':`${remaining} to go`}</div>
+
+      <div className="row" style={{marginTop:18, justifyContent:'center', gap:12, alignItems:'center'}}>
+        <button className="stepper-btn" onClick={()=>bump(-1)}>−</button>
+        <input
+          className="num-input"
+          type="number"
+          inputMode="numeric"
+          value={inputVal}
+          onFocus={e=>e.target.select()}
+          onChange={e=>setInputVal(e.target.value === '' ? '' : Math.max(0, Math.floor(Number(e.target.value))))}
+          style={{maxWidth:140}}
+        />
+        <button className="stepper-btn" onClick={()=>bump(1)}>+</button>
+      </div>
+
+      <div className="row" style={{marginTop:10, gap:6}}>
+        <button className="quick-btn" onClick={()=>bump(1)}>+1</button>
+        <button className="quick-btn" onClick={()=>bump(5)}>+5</button>
+        <button className="quick-btn" onClick={()=>setInputVal(target)}>Full</button>
+      </div>
+
+      <button className="btn btn-primary" style={{marginTop:14}} onClick={logReps} disabled={(Number(inputVal)||0) === 0}>
+        Log {(Number(inputVal)||0)} rep{(Number(inputVal)||0)===1?'':'s'}
+      </button>
+
+      <button
+        className="btn btn-ghost btn-sm"
+        style={{marginTop:8, padding:'10px 12px'}}
+        onClick={endSetShort}
+        disabled={total === 0 && (Number(inputVal)||0) === 0}
+      >
+        {total >= target
+          ? 'Finish set'
+          : isEachSide && side==='left'
+            ? `End left short (${total}/${target})`
+            : `End set short (${total}/${target})`}
+      </button>
+      <p className="help" style={{marginTop:6, fontSize:11}}>Ending short still counts as a set — half pip, half XP.</p>
+    </div>
+  );
+}
+
+function TimePanel({ ex, timerSec, running, onStart, onPause, onReset, onDoneEarly }){
+  return (
+    <div className="card" style={{textAlign:'center', padding:18}}>
+      <div className={`timer-circle ${running?'run':''}`}>
+        <div className="timer-num">{timerSec}</div>
+        <div className="label">SECONDS</div>
+      </div>
+      {!running ? (
+        <button className="btn btn-primary" onClick={onStart}>{timerSec===ex.target?'Start Timer':'Resume'}</button>
+      ) : (
+        <button className="btn btn-secondary" onClick={onPause}>Pause</button>
+      )}
+      <div className="row" style={{marginTop:10, gap:8}}>
+        <button className="btn btn-ghost btn-sm" style={{flex:1}} onClick={onReset}>Reset</button>
+        <button className="btn btn-ghost btn-sm" style={{flex:1}} onClick={onDoneEarly}>Done early</button>
+      </div>
+    </div>
+  );
+}
+
+function RestPanel({ remaining, total, onSkip }){
+  const pct = Math.max(0, Math.min(100, Math.round((1 - remaining/total)*100)));
+  return (
+    <div className="card-burgundy" style={{textAlign:'center', padding:20}}>
+      <h3 style={{color:'var(--gold)'}}>Rest</h3>
+      <div className="stat-num" style={{fontSize:64, color:'var(--gold)', marginTop:8}}>{remaining}s</div>
+      <div className="progress-bar" style={{marginTop:10}}><div style={{width:pct+'%'}}/></div>
+      <p className="help" style={{marginTop:8, color:'#FCE4B5'}}>Breathe deep. Loose limbs.</p>
+      <button className="btn btn-primary" style={{marginTop:14}} onClick={onSkip}>Skip Rest</button>
+    </div>
+  );
+}
+
+// =================== SESSION DONE ===================
+function SessionDoneScreen({ state, navigate, dispatch, consent, shareLog, setShareLog }){
+  const last = state.sessions[state.sessions.length-1];
+  const club = clubFor(state.profile.clubs[Math.floor(Math.random()*state.profile.clubs.length)]);
+  const cheer = pickRandom(club.cheers);
+  useEffect(()=>{ fireConfetti(); }, []);
+  const alreadyShared = !!(last && shareLog.find(e => e.date === last.date && e.ok));
+  function recordShare(entry){
+    const next = [...shareLog.filter(e => !(e.date===entry.date && e.sentAt===entry.sentAt)), entry];
+    setShareLog(next); saveShareLog(next);
+  }
+
+  // Find the highest level Jamie has qualified for that he's not already on and hasn't dismissed.
+  const cur = state.profile.level;
+  const acked = state.qualOfferAcked || {};
+  const qual = state.qualifiedFor || {};
+  let offer = null;
+  if (qual.pro && cur !== 'pro' && !acked.pro) offer = 'pro';
+  else if (qual.advanced && cur !== 'advanced' && cur === 'foundation' && !acked.advanced) offer = 'advanced';
+
+  function moveUp(){
+    dispatch({ type:'CHANGE_LEVEL', level: offer });
+    dispatch({ type:'ACK_QUAL_OFFER', level: offer });
+    fireConfetti();
+    navigate({ name:'home' });
+  }
+  function stay(){
+    dispatch({ type:'ACK_QUAL_OFFER', level: offer });
+    navigate({ name:'home' });
+  }
+
+  return (
+    <div style={{textAlign:'center', paddingTop:30}}>
+      <div style={{fontSize:64}}>🏉</div>
+      <h1 style={{marginTop:8, color:'var(--gold)'}}>{cheer}</h1>
+      <p style={{marginTop:8, fontSize:16}}>Session done, {state.profile.name}.</p>
+      <div className="card" style={{marginTop:20, padding:18}}>
+        <div className="grid-2">
+          <div>
+            <div className="label">Sets</div>
+            <div className="stat-num" style={{fontSize:36, color:'var(--gold)'}}>{last.setCount}</div>
+          </div>
+          <div>
+            <div className="label">XP</div>
+            <div className="stat-num" style={{fontSize:36, color:'var(--gold)'}}>+{last.xp}</div>
+          </div>
+        </div>
+        {last.perfect && <div className="chip" style={{marginTop:12}}>⭐ Perfect Session — every set on first attempt</div>}
+      </div>
+
+      {last && (
+        <ShareSection
+          session={last}
+          profile={state.profile}
+          consent={consent}
+          alreadyShared={alreadyShared}
+          onShared={recordShare}
+        />
+      )}
+
+      {offer && (
+        <div className="card-burgundy" style={{marginTop:14, padding:16, textAlign:'left'}}>
+          <div className="row" style={{gap:8, marginBottom:6}}>
+            <div style={{fontSize:24}}>🏆</div>
+            <div>
+              <div style={{fontFamily:'Rajdhani', fontWeight:700, fontSize:16, color:'var(--gold)', textTransform:'uppercase', letterSpacing:'.06em'}}>Qualified for {offer}</div>
+              <div className="help" style={{color:'#FCE4B5'}}>Try it next session?</div>
+            </div>
+          </div>
+          <p className="help" style={{color:'#FCE4B5', fontSize:12, lineHeight:1.4, marginTop:8}}>
+            <strong>Honest check:</strong> only move up if you can do the full set in one go without breaking it into parts. If you still split sets, stay where you are and keep building.
+          </p>
+          <button className="btn btn-primary btn-sm" style={{marginTop:10, width:'100%'}} onClick={moveUp}>
+            Yes — move up to {offer}
+          </button>
+          <button className="btn btn-ghost btn-sm" style={{marginTop:6, width:'100%'}} onClick={stay}>
+            Stay on {cur}
+          </button>
+        </div>
+      )}
+
+      <button className="btn btn-primary" style={{marginTop:18}} onClick={()=>navigate({name:'home'})}>Done</button>
+    </div>
+  );
+}
+
+// =================== CALENDAR ===================
+function CalendarScreen({ state, navigate }){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const completedDays = new Set(state.sessions.filter(s=>s.completed).map(s=>s.date));
+  const ticksTarget = state.profile.level === 'pro' ? 5 : 4;
+
+  // Build 18-week grid
+  const weeks = [];
+  for (let w=0; w<PROGRAMME_WEEKS; w++){
+    const days = [];
+    for (let d=0; d<7; d++){
+      const dt = addDays(PROGRAMME_START, w*7 + d);
+      // Only show day in week 18 if it is Mon (calendar ends Mon Aug 31)
+      if (w === 17 && d > 0) { days.push(null); continue; }
+      days.push(dt);
+    }
+    weeks.push(days);
+  }
+
+  return (
+    <div>
+      <div className="header-bar">
+        <button className="back-btn" onClick={()=>navigate({name:'home'})}>← Home</button>
+        <span className="chip">CALENDAR</span>
+      </div>
+      <h1>Score Sheet</h1>
+      <p className="help" style={{marginBottom:10}}>Tick every session. Thursdays = touch rugby. {ticksTarget} ticks/week target ({state.profile.level}).</p>
+
+      <div className="cal-grid" style={{marginBottom:6}}>
+        <div className="cal-head">WK</div>
+        {['M','T','W','T','F','S','S'].map((d,i)=>(<div key={i} className="cal-head">{d}</div>))}
+        <div className="cal-head">/{ticksTarget}</div>
+      </div>
+
+      {weeks.map((days, wi) => {
+        let weekTicks = 0;
+        const cells = days.map((d, di) => {
+          if (!d) return <div key={di} className="cal-cell" style={{visibility:'hidden'}}/>;
+          const k = dateKey(d);
+          const done = completedDays.has(k);
+          const thursday = isThursday(d);
+          const bh = BANK_HOLIDAYS.has(k);
+          if (done) weekTicks++;
+          // Thursday touch rugby is also counted as a tick if we want — for now, count completed sessions only.
+          const cls = ['cal-cell'];
+          if (thursday) cls.push('thu');
+          if (bh) cls.push('bh');
+          if (dateKey(d)===dateKey(today)) cls.push('today');
+          if (done) cls.push('done');
+          return (
+            <div key={di} className={cls.join(' ')}>
+              <div className="cal-day">{d.getDate()}{d.getDate()===1?` ${d.toLocaleDateString('en-GB',{month:'short'})}`:''}</div>
+              {bh && <span className="cal-bh">BH</span>}
+              {thursday && !bh && <span className="cal-ball"><RugbyBall size={9}/></span>}
+              {done && <span className="cal-tick">✓</span>}
+            </div>
+          );
+        });
+        return (
+          <div className="cal-grid" key={wi} style={{marginBottom:2}}>
+            <div className="cal-week">{wi+1}</div>
+            {cells}
+            <div className="cal-tally">{weekTicks}</div>
+          </div>
+        );
+      })}
+
+      <div className="row" style={{marginTop:16, gap:14, flexWrap:'wrap'}}>
+        <span className="row" style={{gap:4, fontSize:12}}><span className="cal-cell thu" style={{padding:'2px 6px'}}><RugbyBall size={8}/></span> Touch rugby</span>
+        <span className="row" style={{gap:4, fontSize:12}}><span className="cal-cell bh" style={{padding:'2px 6px'}}>BH</span> Bank holiday</span>
+        <span className="row" style={{gap:4, fontSize:12}}><span className="cal-cell done" style={{padding:'2px 6px'}}>✓</span> Done</span>
+      </div>
+    </div>
+  );
+}
+
+// =================== SETS SHEET ===================
+function SetSheetScreen({ state, navigate, dispatch }){
+  const level = state.profile.level;
+  const exs = EXERCISES[level];
+  const sessionsThisLevel = state.sessionsByLevel[level] || 0;
+  const qual = state.qualifiedFor || { advanced:false, pro:false };
+
+  // Qualification source level — whichever level you'd need to clear to qualify for the NEXT level
+  // To unlock Advanced: need 6 of each Foundation ex. To unlock Pro: need 6 of each Advanced ex.
+  function qualBlock(targetLevel){
+    const sourceLevel = targetLevel === 'advanced' ? 'foundation' : 'advanced';
+    const sourceExs = EXERCISES[sourceLevel];
+    const fullCounts = state.perExerciseFullSets || {};
+    const minSets = Math.min(...sourceExs.map(ex => fullCounts[ex.id] || 0));
+    const qualified = qual[targetLevel];
+    return { sourceLevel, sourceExs, minSets, qualified };
+  }
+  const advBlock = qualBlock('advanced');
+  const proBlock = qualBlock('pro');
+
+  return (
+    <div>
+      <div className="header-bar">
+        <button className="back-btn" onClick={()=>navigate({name:'home'})}>← Home</button>
+        <span className="chip">SETS</span>
+      </div>
+      <h1>Set Score Sheet</h1>
+      <p className="help" style={{marginBottom:10}}>Lifetime sets per exercise. You choose your level — these are just markers.</p>
+
+      <div className="card" style={{marginBottom:10}}>
+        <div className="row-between">
+          <div>
+            <div className="label">Sessions at this level</div>
+            <div className="stat-num" style={{fontSize:30, color:'var(--gold)'}}>{sessionsThisLevel}</div>
+          </div>
+          <div style={{textAlign:'right'}}>
+            <div className="label">Total sets all-time</div>
+            <div className="stat-num" style={{fontSize:30, color:'var(--gold)'}}>{state.stats.totalSets}</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid-2" style={{marginBottom:14}}>
+        <QualCard title="Advanced" level="advanced" qualified={advBlock.qualified} minSets={advBlock.minSets}
+                  currentLevel={state.profile.level}
+                  onMoveUp={()=>{ dispatch({type:'CHANGE_LEVEL', level:'advanced'}); dispatch({type:'ACK_QUAL_OFFER', level:'advanced'}); navigate({name:'home'}); }}
+                  helpText={advBlock.qualified ? 'Earned by clearing 6 of every Foundation exercise.' : '6 sets of every Foundation exercise unlocks this marker.'}/>
+        <QualCard title="Pro"      level="pro"      qualified={proBlock.qualified} minSets={proBlock.minSets}
+                  currentLevel={state.profile.level}
+                  onMoveUp={()=>{ dispatch({type:'CHANGE_LEVEL', level:'pro'}); dispatch({type:'ACK_QUAL_OFFER', level:'pro'}); navigate({name:'home'}); }}
+                  helpText={proBlock.qualified ? 'Earned by clearing 6 of every Advanced exercise.' : '6 sets of every Advanced exercise unlocks this marker.'}/>
+      </div>
+
+      <h3 style={{marginBottom:8}}>{level.toUpperCase()} — current level</h3>
+      <p className="help" style={{marginBottom:8, fontSize:11}}>Full sets count toward qualification. Partial sets still count for Century Club.</p>
+      <div style={{display:'grid', gap:8}}>
+        {exs.map(ex => {
+          const total = state.perExerciseSets[ex.id] || 0;
+          const full  = (state.perExerciseFullSets || {})[ex.id] || 0;
+          const partial = total - full;
+          const pct = Math.min(100, (full/6)*100);
+          return (
+            <div key={ex.id} className="card" style={{padding:12}}>
+              <div className="row-between" style={{marginBottom:6}}>
+                <div>
+                  <div style={{fontFamily:'Rajdhani', fontWeight:700, fontSize:16}}>{ex.name}</div>
+                  <div className="help">{ex.pattern}{partial>0 ? ` · ${partial} partial` : ''}</div>
+                </div>
+                <div style={{textAlign:'right'}}>
+                  <div className="stat-num" style={{fontSize:24, color: full>=6?'var(--green)':'var(--gold)', lineHeight:1}}>{full}</div>
+                  <div className="help" style={{fontSize:10, marginTop:2}}>full</div>
+                </div>
+              </div>
+              <div className="progress-bar"><div style={{width:pct+'%'}}/></div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function QualCard({ title, level, qualified, minSets, helpText, currentLevel, onMoveUp }){
+  const pct = Math.min(100, (Math.min(minSets,6)/6)*100);
+  const canMoveUp = qualified && currentLevel !== level && LEVEL_RANK[level] > LEVEL_RANK[currentLevel];
+  const isCurrent = currentLevel === level;
+  return (
+    <div className="card" style={{padding:12, borderColor: qualified ? 'var(--gold)' : 'var(--line)', background: qualified ? 'linear-gradient(180deg, rgba(242,169,0,0.14), rgba(242,169,0,0.04))' : undefined}}>
+      <div className="row-between">
+        <div className="label" style={{color: qualified?'var(--gold)':'var(--muted)'}}>{title}</div>
+        {isCurrent
+          ? <span className="chip" style={{padding:'2px 8px', fontSize:10}}>CURRENT</span>
+          : qualified
+            ? <span className="chip" style={{padding:'2px 8px', fontSize:10}}>✓ QUALIFIED</span>
+            : <span className="stat-num" style={{fontSize:18, color:'var(--gold)'}}>{Math.min(minSets,6)}/6</span>}
+      </div>
+      {!qualified && <div className="progress-bar" style={{marginTop:8}}><div style={{width:pct+'%'}}/></div>}
+      <p className="help" style={{marginTop:8, fontSize:11, lineHeight:1.4}}>{helpText}</p>
+      {canMoveUp && (
+        <button className="btn btn-primary btn-sm" style={{marginTop:8, padding:'8px', fontSize:12, width:'100%'}} onClick={onMoveUp}>
+          Move up to {title}
+        </button>
+      )}
+    </div>
+  );
+}
+
+// =================== ACHIEVEMENTS ===================
+function AchievementsScreen({ state, navigate }){
+  const earned = new Set(state.achievements);
+  return (
+    <div>
+      <div className="header-bar">
+        <button className="back-btn" onClick={()=>navigate({name:'home'})}>← Home</button>
+        <span className="chip">BADGES</span>
+      </div>
+      <h1>Badges</h1>
+      <p className="help" style={{marginBottom:10}}>{earned.size} of {ACHIEVEMENTS.length} earned</p>
+      <div style={{display:'grid', gap:8}}>
+        {ACHIEVEMENTS.map(a => (
+          <div key={a.id} className={`ach-row ${earned.has(a.id)?'earned':'locked'}`}>
+            <div style={{fontSize:28}}>{a.emoji}</div>
+            <div>
+              <div style={{fontFamily:'Rajdhani', fontWeight:700, fontSize:16}}>{a.name}</div>
+              <div className="help">{a.desc}</div>
+            </div>
+            {earned.has(a.id) && <div style={{marginLeft:'auto', color:'var(--green)', fontSize:18}}>✓</div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// =================== SETTINGS ===================
+function SettingsScreen({ state, dispatch, navigate, consent, setConsent }){
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [confirmRevoke, setConfirmRevoke] = useState(false);
+  function changeLevel(newLevel){
+    dispatch({ type:'CHANGE_LEVEL', level: newLevel });
+    navigate({name:'home'});
+  }
+  function reset(){
+    if (!confirmReset){ setConfirmReset(true); return; }
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(CONSENT_KEY);
+    localStorage.removeItem(SHARE_LOG_KEY);
+    location.reload();
+  }
+  function revokeConsent(){
+    if (!confirmRevoke){ setConfirmRevoke(true); return; }
+    const next = { granted:false, parentName:'', signedAt: new Date().toISOString(), revoked:true };
+    saveConsent(next);
+    setConsent(next);
+    setConfirmRevoke(false);
+  }
+  function restartConsent(){
+    // Wipe consent, send to consent screen
+    localStorage.removeItem(CONSENT_KEY);
+    setConsent(null);
+    navigate({ name:'consent' });
+  }
+  return (
+    <div>
+      <div className="header-bar">
+        <button className="back-btn" onClick={()=>navigate({name:'home'})}>← Home</button>
+        <span className="chip">SETTINGS</span>
+      </div>
+      <h1>Settings</h1>
+
+      <h3 style={{margin:'16px 0 8px'}}>Level</h3>
+      <p className="help" style={{marginBottom:10}}>Currently on <strong style={{color:'var(--gold)'}}>{state.profile.level.toUpperCase()}</strong>. Tap any level to switch.</p>
+      <div className="card" style={{borderColor:'var(--gold)', background:'rgba(242,169,0,0.08)', marginBottom:12}}>
+        <p style={{margin:0, fontSize:13, lineHeight:1.5}}>
+          <strong style={{color:'var(--gold)'}}>Honest check.</strong> Only move up if you can do the full set <em>in one go</em> without breaking it into parts. If you still need to split sets, the next level will be too hard — stay where you are and keep building.
+        </p>
+      </div>
+      <div style={{display:'grid', gap:10}}>
+        {['foundation','advanced','pro'].map(L => {
+          const qualified = L === 'foundation' ? true : (state.qualifiedFor && state.qualifiedFor[L]);
+          const isCurrent = state.profile.level === L;
+          return (
+            <div
+              key={L}
+              className={`level-card ${L} ${isCurrent?'selected':''}`}
+              onClick={()=>changeLevel(L)}
+            >
+              <div className="row-between">
+                <h3>{L.charAt(0).toUpperCase()+L.slice(1)}</h3>
+                <div className="row" style={{gap:6}}>
+                  {L !== 'foundation' && (qualified
+                    ? <span className="chip" style={{padding:'2px 8px', fontSize:10}}>✓ QUALIFIED</span>
+                    : <span className="chip chip-burgundy" style={{padding:'2px 8px', fontSize:10}}>NOT YET</span>)}
+                  <span className={`level-pill ${L}`}>{L}</span>
+                </div>
+              </div>
+              <div className="help" style={{marginTop:6}}>
+                {isCurrent ? <strong style={{color:'var(--gold)'}}>Current level</strong> : (
+                  L === 'foundation' ? '4 exercises · 3 sets · learn the form' :
+                  L === 'advanced'   ? '6 exercises · 4 sets · harder variations' :
+                                       '6 exercises · 5 sets · hardest variations'
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <h3 style={{margin:'18px 0 8px'}}>Clubs</h3>
+      <p className="help">Selected: {state.profile.clubs.map(c=>clubFor(c).short).join(' · ')}</p>
+
+      <h3 style={{margin:'18px 0 8px'}}>Sharing &amp; consent</h3>
+      {consent && consent.granted ? (
+        <div className="card" style={{borderColor:'var(--gold)', background:'rgba(242,169,0,0.06)'}}>
+          <p style={{margin:0, fontSize:13, lineHeight:1.5}}>
+            <strong style={{color:'var(--gold)'}}>Consent on file.</strong> Signed by <strong>{consent.parentName}</strong> on {new Date(consent.signedAt).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })}.
+          </p>
+          <p className="help" style={{marginTop:8, fontSize:12}}>
+            Endpoint: {SHARE_ENDPOINT ? <span style={{color:'var(--green)'}}>configured ✓</span> : <span style={{color:'var(--red)'}}>not set — see SHARE-SETUP.md</span>}
+          </p>
+          <button className="btn btn-danger btn-sm" style={{marginTop:10, width:'100%'}} onClick={revokeConsent}>
+            {confirmRevoke ? 'Tap again to confirm revoke' : 'Revoke consent'}
+          </button>
+        </div>
+      ) : (
+        <div className="card">
+          <p style={{margin:0, fontSize:13, lineHeight:1.5}}>
+            <strong style={{color:'var(--gold)'}}>Sharing is off.</strong> {consent && consent.revoked ? 'Consent was revoked.' : 'No parental consent recorded.'}
+          </p>
+          <button className="btn btn-primary btn-sm" style={{marginTop:10, width:'100%'}} onClick={restartConsent}>
+            Set up parental consent
+          </button>
+        </div>
+      )}
+
+      <h3 style={{margin:'18px 0 8px'}}>Reset</h3>
+      <button className="btn btn-danger" onClick={reset}>{confirmReset?'Tap again to confirm wipe':'Wipe all data'}</button>
+    </div>
+  );
+}
+
+// =================== CONSENT ===================
+function ConsentScreen({ onSubmit }){
+  const [parentName, setParentName] = useState('');
+  const [tickRead, setTickRead] = useState(false);
+  const [tickShare, setTickShare] = useState(false);
+  const [signature, setSignature] = useState('');
+
+  const sigMatches = parentName.trim().length>0
+                  && signature.trim().toLowerCase() === parentName.trim().toLowerCase();
+  const valid = sigMatches && tickRead && tickShare;
+
+  function grant(){
+    onSubmit({
+      granted: true,
+      parentName: parentName.trim(),
+      signedAt: new Date().toISOString(),
+      appVersion: APP_VERSION
+    });
+  }
+  function decline(){
+    onSubmit({
+      granted: false,
+      parentName: '',
+      signedAt: new Date().toISOString(),
+      appVersion: APP_VERSION
+    });
+  }
+
+  return (
+    <div>
+      <div style={{textAlign:'center', padding:'8px 0 12px'}}>
+        <Shield size={110}/>
+        <h1 style={{marginTop:10}}>Parent / Guardian Consent</h1>
+        <p className="label" style={{marginTop:6}}>Required before any data is shared</p>
+      </div>
+      <div className="stripe"></div>
+
+      <div className="card" style={{marginBottom:14}}>
+        <h3 style={{marginBottom:8}}>What this is</h3>
+        <p style={{fontSize:14, lineHeight:1.5}}>
+          Summer Strong is a 16-week home strength programme for the U13s. The app runs entirely on this device and won't share anything with the coach unless you tap <strong>"Share my hard work"</strong> at the end of a session.
+        </p>
+        <h3 style={{margin:'14px 0 8px'}}>What we'd send when your child shares</h3>
+        <ul style={{paddingLeft:20, fontSize:14, lineHeight:1.5, margin:0}}>
+          <li>Player's first name (whatever you set in the app)</li>
+          <li>Programme week and session date</li>
+          <li>Level, exercises completed, sets done, session duration</li>
+          <li>Your parent name and the date you signed this consent</li>
+        </ul>
+        <p style={{fontSize:13, lineHeight:1.5, marginTop:10, color:'var(--muted)'}}>
+          We do <strong>not</strong> collect: location, photos, contact details, device IDs, anything else. The data lands in a private Google Sheet visible to the U13 coaches only. You can revoke consent at any time in Settings — that turns off sharing immediately. Past entries already in the sheet would need to be removed by the coach on request.
+        </p>
+      </div>
+
+      <h3 style={{marginBottom:8}}>Your name (parent / guardian)</h3>
+      <input
+        className="input"
+        type="text"
+        placeholder="Full name"
+        value={parentName}
+        onChange={e=>setParentName(e.target.value)}
+        maxLength={60}
+      />
+
+      <h3 style={{margin:'18px 0 8px'}}>Confirm</h3>
+      <div
+        className={`consent-tick ${tickRead?'on':''}`}
+        onClick={()=>setTickRead(v=>!v)}
+        role="checkbox"
+        aria-checked={tickRead}
+      >
+        <div className="consent-box">{tickRead ? '✓' : ''}</div>
+        <div className="consent-text">I have read what would be shared and I am the parent or legal guardian of the player using this app.</div>
+      </div>
+      <div
+        className={`consent-tick ${tickShare?'on':''}`}
+        onClick={()=>setTickShare(v=>!v)}
+        role="checkbox"
+        aria-checked={tickShare}
+      >
+        <div className="consent-box">{tickShare ? '✓' : ''}</div>
+        <div className="consent-text">I consent to the data above being sent to the U13 coaches' achievement log when my child taps "Share my hard work".</div>
+      </div>
+
+      <h3 style={{margin:'14px 0 8px'}}>Sign</h3>
+      <p className="help" style={{marginBottom:8}}>Type your full name again to sign.</p>
+      <input
+        className="input"
+        type="text"
+        placeholder="Type your name to sign"
+        value={signature}
+        onChange={e=>setSignature(e.target.value)}
+        maxLength={60}
+      />
+      {signature && !sigMatches && (
+        <p className="help" style={{color:'var(--red)', marginTop:6}}>Signature must match the name above.</p>
+      )}
+
+      <button
+        className="btn btn-primary"
+        style={{marginTop:18}}
+        disabled={!valid}
+        onClick={grant}
+      >Give consent &amp; continue</button>
+
+      <button
+        className="btn btn-ghost"
+        style={{marginTop:8}}
+        onClick={decline}
+      >Continue without sharing</button>
+
+      <p className="help" style={{marginTop:10, fontSize:11, textAlign:'center'}}>
+        You can change this any time in Settings. The app works fully offline either way.
+      </p>
+    </div>
+  );
+}
+
+// =================== SHARE BUTTON / SECTION ===================
+function ShareSection({ session, profile, consent, alreadyShared, onShared }){
+  const [busy, setBusy] = useState(false);
+  const [result, setResult] = useState(null); // { ok, error }
+  const noEndpoint = !SHARE_ENDPOINT;
+  const noConsent = !(consent && consent.granted);
+  const blocked = noEndpoint || noConsent || alreadyShared;
+
+  async function share(){
+    if (blocked || busy) return;
+    setBusy(true);
+    const payload = buildSharePayload({ session, profile, consent });
+    const res = await postToCoachLog(payload);
+    setBusy(false);
+    setResult(res);
+    onShared({
+      date: session.date,
+      sentAt: new Date().toISOString(),
+      ok: res.ok,
+      error: res.ok ? null : res.error,
+      summary: { setCount: session.setCount, fullCount: session.fullCount, xp: session.xp }
+    });
+  }
+
+  return (
+    <div className="card" style={{marginTop:14, padding:14, textAlign:'left'}}>
+      <h3 style={{color:'var(--gold)'}}>Share my hard work</h3>
+      <p className="help" style={{marginTop:6, marginBottom:10}}>
+        Send this session to the coach's achievement log. They'll see your name, the week, exercises, sets and duration.
+      </p>
+
+      {alreadyShared && !result && (
+        <p style={{color:'var(--green)', fontSize:13, fontFamily:'Rajdhani', fontWeight:700, letterSpacing:'.06em', textTransform:'uppercase'}}>✓ Already shared</p>
+      )}
+
+      {noConsent && (
+        <p className="help" style={{color:'var(--gold)', fontSize:12}}>
+          Parental consent is needed before sharing. A parent can grant it in <strong>Settings → Sharing</strong>.
+        </p>
+      )}
+      {!noConsent && noEndpoint && (
+        <p className="help" style={{color:'var(--gold)', fontSize:12}}>
+          Sharing isn't wired up yet — the coach needs to add the link (see SHARE-SETUP.md).
+        </p>
+      )}
+
+      <button
+        className="btn btn-primary"
+        style={{marginTop:8}}
+        onClick={share}
+        disabled={blocked || busy}
+      >
+        {busy ? 'Sending…' : alreadyShared ? '✓ Shared' : 'Share my hard work 🌟'}
+      </button>
+
+      {result && result.ok && (
+        <p style={{color:'var(--green)', fontSize:13, marginTop:10}}>Sent to your coach. Strong work.</p>
+      )}
+      {result && !result.ok && (
+        <p style={{color:'var(--red)', fontSize:13, marginTop:10}}>Couldn't send: {result.error}. You can retry from the Coach Log tab.</p>
+      )}
+    </div>
+  );
+}
+
+// =================== COACH LOG (in-app history) ===================
+function ShareLogScreen({ state, consent, navigate, shareLog, setShareLog }){
+  const [retryFor, setRetryFor] = useState(null);
+
+  async function retry(entry){
+    const session = state.sessions.find(s => s.date === entry.date);
+    if (!session) return;
+    setRetryFor(entry.date);
+    const payload = buildSharePayload({ session, profile: state.profile, consent });
+    const res = await postToCoachLog(payload);
+    setRetryFor(null);
+    const next = shareLog.map(e =>
+      (e.date === entry.date && e.sentAt === entry.sentAt)
+        ? { ...e, ok: res.ok, error: res.ok ? null : res.error, sentAt: new Date().toISOString() }
+        : e
+    );
+    setShareLog(next); saveShareLog(next);
+  }
+
+  // Sort: newest first
+  const rows = shareLog.slice().sort((a,b) => (b.sentAt||'').localeCompare(a.sentAt||''));
+
+  return (
+    <div>
+      <div className="header-bar">
+        <button className="back-btn" onClick={()=>navigate({name:'home'})}>← Home</button>
+        <span className="chip">COACH LOG</span>
+      </div>
+      <h1>Achievement Log</h1>
+      <p className="help" style={{marginBottom:10}}>
+        Sessions you've shared with the coaches.{!SHARE_ENDPOINT ? ' Sharing not wired up yet — see SHARE-SETUP.md.' : ''}
+      </p>
+
+      {!consent || !consent.granted ? (
+        <div className="card" style={{borderColor:'var(--gold)', background:'rgba(242,169,0,0.08)'}}>
+          <p style={{margin:0, fontSize:13, lineHeight:1.5}}>
+            <strong style={{color:'var(--gold)'}}>Parental consent required.</strong> A parent can turn sharing on in <strong>Settings → Sharing</strong>.
+          </p>
+        </div>
+      ) : null}
+
+      {rows.length === 0 ? (
+        <p className="help" style={{marginTop:14}}>Nothing shared yet. After a session, tap <strong>Share my hard work</strong> on the done screen.</p>
+      ) : (
+        <div style={{marginTop:6}}>
+          {rows.map((e,i) => {
+            const cls = `log-row ${e.ok ? 'sent' : 'failed'}`;
+            const dt = new Date(e.date).toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+            const tm = e.sentAt ? new Date(e.sentAt).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }) : '';
+            return (
+              <div key={i} className={cls}>
+                <div>
+                  <div style={{fontFamily:'Rajdhani', fontWeight:700, fontSize:15}}>{dt}</div>
+                  <div className="help" style={{marginTop:2}}>
+                    {e.ok ? `✓ Shared at ${tm}` : `⚠ Failed: ${e.error || 'unknown'}`}
+                    {e.summary ? ` · ${e.summary.setCount} sets · +${e.summary.xp} XP` : ''}
+                  </div>
+                </div>
+                {!e.ok && (
+                  <button
+                    className="btn btn-ghost btn-sm"
+                    onClick={()=>retry(e)}
+                    disabled={retryFor === e.date || !SHARE_ENDPOINT || !consent || !consent.granted}
+                  >
+                    {retryFor === e.date ? 'Retrying…' : 'Retry'}
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      <div className="nav-tabs">
+        <button className="nav-tab" onClick={()=>navigate({name:'home'})}>Home</button>
+        <button className="nav-tab" onClick={()=>navigate({name:'calendar'})}>Calendar</button>
+        <button className="nav-tab" onClick={()=>navigate({name:'sets'})}>Sets</button>
+        <button className="nav-tab" onClick={()=>navigate({name:'achievements'})}>Badges</button>
+        <button className="nav-tab active">Log</button>
+      </div>
+    </div>
+  );
+}
+
+// =================== APP / REDUCER ===================
+function reducer(state, action){
+  switch(action.type){
+    case 'COMPLETE_SETUP': {
+      return { ...state, profile: action.profile };
+    }
+    case 'START_SESSION': {
+      return { ...state, currentSession: action.session };
+    }
+    case 'COMPLETE_SET': {
+      const { exerciseId, setIndex, hitFull, hitFirstAttempt } = action;
+      const cs = state.currentSession;
+      const exData = cs.exercises[exerciseId];
+      const newSets = exData.sets.map((s,i) => i===setIndex ? { complete:true, hitFull, hitFirstAttempt } : s);
+      const newCs = {
+        ...cs,
+        exercises: { ...cs.exercises, [exerciseId]: { sets: newSets } }
+      };
+      const xpDelta = (hitFull ? 10 : 5) + (hitFull && hitFirstAttempt ? 5 : 0);
+      return {
+        ...state,
+        currentSession: newCs,
+        stats: { ...state.stats, xp: state.stats.xp + xpDelta, totalSets: state.stats.totalSets + 1 },
+        perExerciseSets:     { ...state.perExerciseSets,     [exerciseId]: (state.perExerciseSets[exerciseId]||0) + 1 },
+        perExerciseFullSets: { ...state.perExerciseFullSets, [exerciseId]: (state.perExerciseFullSets[exerciseId]||0) + (hitFull?1:0) }
+      };
+    }
+    case 'COMPLETE_SESSION': {
+      const cs = state.currentSession;
+      const exs = EXERCISES[cs.level];
+      let setCount = 0, fullCount = 0, firstAttempts = 0;
+      const exerciseDetail = [];
+      for (const ex of exs){
+        const ed = cs.exercises[ex.id];
+        let exFull = 0, exPartial = 0;
+        for (const s of ed.sets){
+          if (s.complete) {
+            setCount++;
+            if (s.hitFull) { fullCount++; exFull++; }
+            else { exPartial++; }
+            if (s.hitFull && s.hitFirstAttempt) firstAttempts++;
+          }
+        }
+        exerciseDetail.push({ id: ex.id, name: ex.name, sets: ex.sets, full: exFull, partial: exPartial });
+      }
+      const totalExpected = exs.reduce((a,e)=>a+e.sets,0);
+      const perfect = (setCount === totalExpected) && firstAttempts === totalExpected;
+      const sessionXp = 25 + (perfect ? 25 : 0);
+      const summary = {
+        date: cs.date, level: cs.level, completed: true,
+        startedAt: cs.startedAt || null,
+        completedAt: Date.now(),
+        setCount, fullCount, partialCount: setCount - fullCount,
+        xp: sessionXp + fullCount*10 + (setCount-fullCount)*5, perfect,
+        exerciseDetail
+      };
+      return {
+        ...state,
+        currentSession: null,
+        sessions: [...state.sessions, summary],
+        stats: {
+          ...state.stats,
+          xp: state.stats.xp + sessionXp,
+          totalSessions: state.stats.totalSessions + 1
+        },
+        sessionsByLevel: { ...state.sessionsByLevel, [cs.level]: (state.sessionsByLevel[cs.level]||0)+1 }
+      };
+    }
+    case 'EARN_ACHIEVEMENT': {
+      if (state.achievements.includes(action.id)) return state;
+      return { ...state, achievements: [...state.achievements, action.id] };
+    }
+    case 'CHANGE_LEVEL': {
+      const movedUp = LEVEL_RANK[action.level] > LEVEL_RANK[state.profile.level];
+      const ach = (movedUp && !state.achievements.includes('levelled_up'))
+        ? [...state.achievements, 'levelled_up']
+        : state.achievements;
+      return { ...state, profile: { ...state.profile, level: action.level }, achievements: ach };
+    }
+    case 'SET_QUALIFIED': {
+      return { ...state, qualifiedFor: action.qualifiedFor };
+    }
+    case 'ACK_QUAL_OFFER': {
+      return { ...state, qualOfferAcked: { ...state.qualOfferAcked, [action.level]: true } };
+    }
+    default: return state;
+  }
+}
+
+function App(){
+  const [state, setState] = useState(loadState);
+  const [consent, setConsent] = useState(loadConsent);
+  const [shareLog, setShareLog] = useState(loadShareLog);
+  const [route, setRoute] = useState(() => {
+    const c = loadConsent();
+    const s = loadState();
+    if (!c) return { name: 'consent' };
+    return { name: s.profile ? 'home' : 'setup' };
+  });
+  const [toast, showToast] = useToast();
+
+  // Persist on every change
+  useEffect(() => { saveState(state); }, [state]);
+
+  function dispatch(action){
+    setState(s => reducer(s, action));
+  }
+
+  // Achievement evaluation after every state change
+  useEffect(() => {
+    const earned = new Set(state.achievements);
+    const newlyEarned = [];
+
+    function maybe(id, cond){
+      if (cond && !earned.has(id)){ newlyEarned.push(id); earned.add(id); }
+    }
+
+    maybe('first_session', state.stats.totalSessions >= 1);
+    maybe('hat_trick', state.stats.totalSessions >= 3);
+    maybe('veteran', state.stats.totalSessions >= 10);
+    maybe('century', state.stats.totalSets >= 100);
+    maybe('iron_will', Math.max(...Object.values(state.sessionsByLevel||{}).concat([0])) >= 10);
+
+    const lastSession = state.sessions[state.sessions.length-1];
+    if (lastSession && lastSession.perfect){
+      maybe('perfect', true);
+    }
+
+    // Streak
+    const streak = computeStreak(state.sessions);
+    maybe('streak_3', streak >= 3);
+    maybe('streak_5', streak >= 5);
+
+    // Week warrior — sessions in current ISO week (the one of the most recent session)
+    if (lastSession){
+      const sd = new Date(lastSession.date);
+      const ws = startOfISOWeek(sd);
+      const weekKey = dateKey(ws);
+      const cnt = state.sessions.filter(s => dateKey(startOfISOWeek(new Date(s.date))) === weekKey).length;
+      maybe('week_warrior', cnt >= 3);
+    }
+
+    if (newlyEarned.length){
+      // Add them and toast
+      setState(s => ({ ...s, achievements: [...s.achievements, ...newlyEarned] }));
+      const a = ACHIEVEMENTS.find(x=>x.id===newlyEarned[0]);
+      showToast({ kind:'achievement', title: a.name, desc: a.desc, emoji: a.emoji });
+      fireConfetti();
+    }
+
+    // Qualification detection — fire a toast first time each threshold is crossed
+    const currentQual = computeQualifications(state.perExerciseFullSets || {});
+    const prevQual = state.qualifiedFor || { advanced:false, pro:false };
+    if (currentQual.advanced !== prevQual.advanced || currentQual.pro !== prevQual.pro){
+      setState(s => ({ ...s, qualifiedFor: currentQual }));
+      if (currentQual.advanced && !prevQual.advanced){
+        showToast({ kind:'qual', emoji:'🏆', title:'Qualified for Advanced', desc:'Move up in Settings if you’re ready.' });
+        fireConfetti();
+      }
+      if (currentQual.pro && !prevQual.pro){
+        showToast({ kind:'qual', emoji:'🏆', title:'Qualified for Pro', desc:'The top level is unlocked. Move up in Settings if you’re ready.' });
+        fireConfetti();
+      }
+    }
+  }, [state]);
+
+  function navigate(r){ setRoute(r); window.scrollTo(0,0); }
+
+  function submitConsent(c){
+    saveConsent(c);
+    setConsent(c);
+    navigate({ name: state.profile ? 'home' : 'setup' });
+  }
+
+  // Routing
+  let body;
+  if (route.name === 'consent' || (!consent && !state.profile)){
+    body = <ConsentScreen onSubmit={submitConsent}/>;
+  } else if (!state.profile || route.name === 'setup'){
+    body = <SetupScreen onComplete={(profile)=>{ dispatch({type:'COMPLETE_SETUP', profile}); navigate({name:'home'}); }}/>;
+  } else if (route.name === 'home'){
+    body = <HomeScreen state={state} navigate={navigate} dispatch={dispatch}/>;
+  } else if (route.name === 'session'){
+    body = <SessionScreen state={state} navigate={navigate} dispatch={dispatch}/>;
+  } else if (route.name === 'exercise'){
+    body = <ExerciseScreen state={state} dispatch={dispatch} navigate={navigate} exerciseId={route.id}/>;
+  } else if (route.name === 'session_done'){
+    body = <SessionDoneScreen state={state} navigate={navigate} dispatch={dispatch} consent={consent} shareLog={shareLog} setShareLog={setShareLog}/>;
+  } else if (route.name === 'calendar'){
+    body = <CalendarScreen state={state} navigate={navigate}/>;
+  } else if (route.name === 'sets'){
+    body = <SetSheetScreen state={state} navigate={navigate} dispatch={dispatch}/>;
+  } else if (route.name === 'achievements'){
+    body = <AchievementsScreen state={state} navigate={navigate}/>;
+  } else if (route.name === 'log'){
+    body = <ShareLogScreen state={state} consent={consent} navigate={navigate} shareLog={shareLog} setShareLog={setShareLog}/>;
+  } else if (route.name === 'settings'){
+    body = <SettingsScreen state={state} dispatch={dispatch} navigate={navigate} consent={consent} setConsent={setConsent}/>;
+  } else {
+    body = <HomeScreen state={state} navigate={navigate} dispatch={dispatch}/>;
+  }
+
+  return (
+    <div className="app">
+      {body}
+      {toast && (
+        <div className="toast">
+          <div className="row" style={{gap:10}}>
+            <div style={{fontSize:24}}>{toast.emoji}</div>
+            <div>
+              <strong>{toast.title}</strong>
+              <small>{toast.desc}</small>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
+//fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin></script>

@@ -42,7 +42,7 @@ const S = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --gold:#F2A900;--gold-d:rgba(242,169,0,.13);--gold-b:rgba(242,169,0,.3);
-  --maroon:#8B1A2C;--maroon-d:rgba(139,26,44,.25);
+  --maroon:#8D2145;--maroon-d:rgba(141,33,69,.25);--maroon-b:rgba(141,33,69,.5);
   --green:#00A651;--green-d:rgba(0,166,81,.15);
   --red:#C8102E;
   --bg:#07090D;--bg2:#0D1117;--bg3:#141820;--bg4:#1C2230;
@@ -65,11 +65,13 @@ html,body{background:var(--bg);color:var(--text);font-family:var(--fb);}
 .btn-ghost{background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
 .btn-sm{font-size:13px;padding:11px 16px;letter-spacing:1px;}
 
-.setup{min-height:100vh;background:radial-gradient(ellipse at 50% -10%,rgba(139,26,44,.4) 0%,transparent 60%),var(--bg);padding:40px 20px 40px;}
+.setup{min-height:100vh;background:radial-gradient(ellipse at 50% -20%,rgba(141,33,69,.55) 0%,transparent 55%),var(--bg);padding:32px 20px 40px;}
+.shield-wrap{display:flex;justify-content:center;margin-bottom:18px;}
+.shield-wrap svg{filter:drop-shadow(0 6px 20px rgba(141,33,69,.4));}
 .logo-badge{display:inline-block;background:var(--gold);color:#07090D;font-family:var(--fc);font-weight:800;font-size:10px;letter-spacing:3px;padding:4px 12px;border-radius:4px;margin-bottom:14px;}
-.logo-title{font-family:var(--fh);font-size:52px;font-weight:700;line-height:1;color:var(--gold);margin-bottom:6px;}
-.logo-sub{font-family:var(--fc);font-size:13px;letter-spacing:2px;color:var(--text2);margin-bottom:36px;}
-.welcome-block{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:24px;font-size:14px;line-height:1.6;color:var(--text2);}
+.logo-title{font-family:var(--fh);font-size:52px;font-weight:700;line-height:1;color:var(--gold);margin-bottom:6px;text-align:center;}
+.logo-sub{font-family:var(--fc);font-size:13px;letter-spacing:2px;color:var(--text2);margin-bottom:30px;text-align:center;}
+.welcome-block{background:linear-gradient(180deg,rgba(141,33,69,.18) 0%,var(--bg3) 100%);border:1px solid var(--maroon-b);border-radius:var(--r);padding:18px;margin-bottom:24px;font-size:14px;line-height:1.6;color:var(--text2);}
 .welcome-block strong{color:var(--gold);}
 .fl{margin-bottom:20px}
 .fl label{display:block;font-family:var(--fc);font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text2);text-transform:uppercase;margin-bottom:8px;}
@@ -78,7 +80,7 @@ html,body{background:var(--bg);color:var(--text);font-family:var(--fb);}
 .fl input::placeholder{color:var(--text3);}
 .clubs-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
 .club-btn{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:8px 6px;font-family:var(--fc);font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--text2);cursor:pointer;text-align:center;transition:all .2s;word-break:break-word;line-height:1.2;}
-.club-btn.sel{border-color:var(--gold);background:var(--gold-d);color:var(--gold);}
+.club-btn.sel{border-color:var(--gold);background:var(--maroon-d);color:var(--gold);}
 
 .home-hdr{padding:24px 20px 0;background:linear-gradient(180deg,#0D1117 0%,transparent 100%);}
 .home-greet small{font-family:var(--fc);font-size:11px;letter-spacing:2px;color:var(--text2);}
@@ -569,8 +571,31 @@ function checkAchs(sessions, profile, currentEarned, flags = {}) {
   return newIds;
 }
 
+function ACRFCShield({ size = 130 }) {
+  const w = size, h = Math.round(size * 1.18);
+  return (
+    <svg width={w} height={h} viewBox="0 0 130 154" xmlns="http://www.w3.org/2000/svg">
+      {/* Outer shield: black fill with gold border */}
+      <path d="M8 8 L122 8 L122 94 Q122 122 65 146 Q8 122 8 94 Z" fill="#000" stroke="#F2A900" strokeWidth="3" strokeLinejoin="round"/>
+      {/* Inner shield: burgundy fill */}
+      <path d="M14 14 L116 14 L116 92 Q116 117 65 137 Q14 117 14 92 Z" fill="#8D2145"/>
+      {/* Black top band */}
+      <rect x="14" y="14" width="102" height="32" fill="#000"/>
+      {/* Gold divider under band */}
+      <rect x="14" y="46" width="102" height="2" fill="#F2A900"/>
+      {/* Header text */}
+      <text x="65" y="28" fill="#fff" textAnchor="middle" fontFamily="Rajdhani, sans-serif" fontSize="9" fontWeight="700" letterSpacing="1.5">AMERSHAM &amp; CHILTERN</text>
+      <text x="65" y="42" fill="#F2A900" textAnchor="middle" fontFamily="Rajdhani, sans-serif" fontSize="13" fontWeight="700" letterSpacing="2">RUGBY</text>
+      {/* Body */}
+      <text x="65" y="82" fill="#F2A900" textAnchor="middle" fontFamily="Barlow Condensed, sans-serif" fontSize="30" fontWeight="800" letterSpacing="2">U13</text>
+      <text x="65" y="103" fill="#fff" textAnchor="middle" fontFamily="Barlow Condensed, sans-serif" fontSize="9" fontWeight="700" letterSpacing="2.5">SUMMER STRONG</text>
+      <text x="65" y="118" fill="rgba(255,255,255,0.55)" textAnchor="middle" fontFamily="Barlow Condensed, sans-serif" fontSize="8" fontWeight="600" letterSpacing="3">2026</text>
+    </svg>
+  );
+}
+
 function Confetti() {
-  const colors = ['#F2A900','#00A651','#C8102E','#8B1A2C','#FFD166','#ffffff'];
+  const colors = ['#F2A900','#8D2145','#FFD166','#ffffff','#F2A900','#8D2145'];
   const pieces = Array.from({length:60},(_,i)=>({
     left: Math.random()*100, color: colors[i%colors.length],
     dur: 1.5+Math.random()*2, del: Math.random()*1.2,
@@ -920,7 +945,7 @@ function SummerStrong() {
       {/* SETUP */}
       {screen==='setup' && (
         <div className="setup fade">
-          <div className="logo-badge">AMERSHAM & CHILTERN RFC · U13 · 2026</div>
+          <div className="shield-wrap"><ACRFCShield size={140} /></div>
           <div className="logo-title">SUMMER<br/>STRONG</div>
           <div className="logo-sub">YOUR SUMMER. YOUR WORK. YOUR SEASON.</div>
           <div className="welcome-block">
@@ -949,9 +974,12 @@ function SummerStrong() {
       {screen==='home' && profile && (
         <div className="fade" style={{paddingBottom:90}}>
           <div className="home-hdr">
-            <div className="home-greet">
-              <small>SUMMER STRONG · {TIER_LABEL[phase]?.toUpperCase()} PHASE</small>
-              <h2>Let's go, <span>{profile.name}</span>.</h2>
+            <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:12}}>
+              <div className="home-greet">
+                <small>SUMMER STRONG · {TIER_LABEL[phase]?.toUpperCase()} PHASE</small>
+                <h2>Let's go, <span>{profile.name}</span>.</h2>
+              </div>
+              <div style={{flexShrink:0,marginTop:4}}><ACRFCShield size={52} /></div>
             </div>
             <div className="xp-block">
               <div className="xp-top"><span>LEVEL {xpLevel} · {totalXP} XP</span><strong>{Math.round(xpProgress*100)}% to next</strong></div>
